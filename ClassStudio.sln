@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{74B4F6F4-3BE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xml2CSharp", "Lib\XmlToCSharp\Xml2CSharp\Xml2CSharp.csproj", "{A5CABB19-23A6-4CAF-8596-97ABAFCB65EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptSyntaxPaste", "Lib\TypescriptSyntaxPaste\TypescriptSyntaxPaste.csproj", "{96000429-047C-4008-BE11-5601888ACD7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +31,17 @@ Global
 		{A5CABB19-23A6-4CAF-8596-97ABAFCB65EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5CABB19-23A6-4CAF-8596-97ABAFCB65EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5CABB19-23A6-4CAF-8596-97ABAFCB65EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96000429-047C-4008-BE11-5601888ACD7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96000429-047C-4008-BE11-5601888ACD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96000429-047C-4008-BE11-5601888ACD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96000429-047C-4008-BE11-5601888ACD7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A5CABB19-23A6-4CAF-8596-97ABAFCB65EE} = {74B4F6F4-3BE7-49B1-9864-4E2272C3DA45}
+		{96000429-047C-4008-BE11-5601888ACD7C} = {74B4F6F4-3BE7-49B1-9864-4E2272C3DA45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95629079-B24A-4304-89DA-B6FF66617FB5}

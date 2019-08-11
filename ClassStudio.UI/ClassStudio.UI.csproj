@@ -3,17 +3,27 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Scripts\Index\index.controller.ts" />
-    <None Remove="Scripts\Index\index.model.ts" />
-    <None Remove="Scripts\Index\index.services.ts" />
-    <None Remove="Scripts\Index\index.view.ts" />
+    <None Remove="Scripts\constants.ts" />
+    <None Remove="Scripts\Generator\generator.controller.ts" />
+    <None Remove="Scripts\Generator\generator.model.ts" />
+    <None Remove="Scripts\Generator\generator.services.ts" />
+    <None Remove="Scripts\Generator\generator.view.ts" />
+    <None Remove="Scripts\httpClient.ts" />
+    <None Remove="Scripts\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="5.22.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview7.19362.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0-preview7.19362.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview7.19362.4" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">

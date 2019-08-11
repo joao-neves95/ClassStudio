@@ -18,6 +18,11 @@ namespace ClassStudio.Core.Generators
             return stringWriter.ToString();
         }
 
+        public static void ToTypeScript()
+        {
+
+        }
+
         public static string ToJSON()
         {
             throw new NotImplementedException();
