@@ -2,7 +2,25 @@
     ViewData["Title"] = "Class Generator";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section id="input-section">
+    <h3>Input</h3>
+
+    <div uk-form-custom="target: > * > span:first-child">
+        <select>
+            <option>Text</option>
+            <option>Path</option>
+        </select>
+        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+            <span></span>
+            <span uk-icon="icon: chevron-down"></span>
+        </button>
+    </div>
+
+    <textarea class="uk-textarea" required></textarea>
+
+</section>
+
+<section id="output-section">
+    <h3>Output</h3>
+    <textarea class="uk-textarea" readonly></textarea>
+</section>
