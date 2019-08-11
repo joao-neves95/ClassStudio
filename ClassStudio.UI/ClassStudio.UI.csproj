@@ -3,7 +3,17 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Scripts\Index\index.controller.ts" />
+    <None Remove="Scripts\Index\index.model.ts" />
+    <None Remove="Scripts\Index\index.services.ts" />
+    <None Remove="Scripts\Index\index.view.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="5.22.14" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">
