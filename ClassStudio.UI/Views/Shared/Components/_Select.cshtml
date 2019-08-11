@@ -1,0 +1,19 @@
+﻿@model ClassStudio.UI.Models.Components.SelectViewModel
+
+<div uk-form-custom="target: > * > span:first-child">
+
+    <select id="@Model.Id">
+        
+        @for(int i = 0; i < Model.Options.Count; ++i)
+        {
+            <option>@Model.Options[i].Label</option>
+        }
+    
+    </select>
+
+    <button class="uk-button uk-button-default" type="button" tabindex="-1">
+        <span></span>
+        <span uk-icon="icon: chevron-down"></span>
+    </button>
+
+</div>

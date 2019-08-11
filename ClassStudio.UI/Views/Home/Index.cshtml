@@ -1,26 +1,22 @@
-﻿@{
+﻿@model ClassStudio.UI.Models.IndexViewModel
+
+@{
     ViewData["Title"] = "Class Generator";
 }
 
 <section id="input-section">
     <h3>Input</h3>
 
-    <div uk-form-custom="target: > * > span:first-child">
-        <select>
-            <option>Text</option>
-            <option>Path</option>
-        </select>
-        <button class="uk-button uk-button-default" type="button" tabindex="-1">
-            <span></span>
-            <span uk-icon="icon: chevron-down"></span>
-        </button>
-    </div>
+    @await Html.PartialAsync( "Components/_Select", Model.InputTypeSelector )
 
-    <textarea class="uk-textarea" required></textarea>
+    <textarea id="input-code" class="uk-textarea" required></textarea>
+    <button id="compile-btn" class="uk-button uk-button-default">Complile</button>
 
 </section>
 
 <section id="output-section">
     <h3>Output</h3>
-    <textarea class="uk-textarea" readonly></textarea>
+    @await Html.PartialAsync( "Components/_Select", Model.InputTypeSelector )
+
+    <textarea id="output-textarea" class="uk-textarea" readonly></textarea>
 </section>

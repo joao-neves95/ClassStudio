@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ClassStudio.UI.Models;
+using ClassStudio.UI.Models.Components;
+using ClassStudio.UI.Enums;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -20,7 +22,33 @@ namespace ClassStudio.UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            SelectViewModel selectViewModel = new SelectViewModel()
+            {
+                Options = new List<OptionViewModel>()
+                {
+                    new OptionViewModel()
+                    {
+                        Label = "XML",
+                        Value = ((int)LangEnym.XML).ToString()
+                    },
+                    new OptionViewModel()
+                    {
+                        Label = "C#",
+                        Value = ((int)LangEnym.CSharp).ToString()
+                    }
+                }
+            };
+
+            IndexViewModel indexViewModel = new IndexViewModel()
+            {
+                InputTypeSelector = selectViewModel,
+                OutputTypeSelector = selectViewModel
+            };
+
+            indexViewModel.InputTypeSelector.Id = "input-selector";
+            indexViewModel.OutputTypeSelector.Id = "output-selector";
+
+            return View( indexViewModel );
         }
 
         public IActionResult About()
