@@ -1,13 +1,21 @@
 ﻿import { HttpClient } from '../httpClient';
 
 
-export class GeneratorView {
+export class GeneratorService {
 
-  public async compile(): Promise<any> {
-    const res = await HttpClient.post( '', {} );
+  public async compile( input: string | null ): Promise<any> {
+    if ( !input )
+      null;
 
-    if ( res.ok )
+    const res = await HttpClient.post( '/generator/XMLStringToCSharp', {  } );
+
+    if (res.ok) {
       return await res.json();
+
+    } else {
+      return res.statusText;
+    }
+
   }
 
 }

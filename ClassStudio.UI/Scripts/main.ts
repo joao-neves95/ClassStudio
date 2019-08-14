@@ -1,3 +1,9 @@
-﻿import { GeneratorController } from './Generator/generator.controller';
+﻿
+import { GeneratorController } from './Generator/generator.controller';
 
-const generatorController: GeneratorController = new GeneratorController();
+function main() {
+  console.log( 'main.ts' );
+  new GeneratorController();
+}
+
+main();

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/joao-neves95/ClassStudio#readme",
   "dependencies": {
     "@types/es6-promise": "^3.3.0",
+    "systemjs": "^5.0.0",
     "uikit": "^3.1.7"
   }
 }

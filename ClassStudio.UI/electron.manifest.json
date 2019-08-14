@@ -5,7 +5,7 @@
   },
   "singleInstance": false,
   "build": {
-    "appId": "com.ClassStudio.UI.app",
+    "appId": "com.ClassStudio.app",
     "productName": "ClassStudio",
     "copyright": "Copyright © 2019",
     "buildVersion": "1.0.0",
@@ -17,14 +17,14 @@
       {
         "from": "./bin",
         "to": "bin",
-        "filter": ["**/*"]
+        "filter": [ "**/*" ]
       }
     ],
     "files": [
       {
         "from": "./ElectronHostHook/node_modules",
         "to": "ElectronHostHook/node_modules",
-        "filter": ["**/*"]
+        "filter": [ "**/*" ]
       },
       "**/*"
     ]

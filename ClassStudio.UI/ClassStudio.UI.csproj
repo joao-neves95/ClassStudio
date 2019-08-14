@@ -26,6 +26,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassStudio.Core\ClassStudio.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

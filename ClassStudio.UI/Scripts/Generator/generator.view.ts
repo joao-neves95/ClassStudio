@@ -2,6 +2,19 @@
 
 export class GeneratorView {
 
+  public get inputElem(): HTMLElement | null {
+    return document.getElementById( 'input-code' );
+  }
+
+  public get inputElemValue(): string | null {
+    const inputElem = this.inputElem;
+
+    if ( inputElem )
+      return inputElem.nodeValue;
+
+    return null;
+  }
+
   public get inputSelectorElem(): HTMLElement | null {
     return document.getElementById( Constants.Ids.Generator.inputSelector );
   }
@@ -13,6 +26,19 @@ export class GeneratorView {
       return inputSelectorElem.nodeValue;
 
     return null
+  }
+
+  public get outputElem(): HTMLElement | null {
+    return document.getElementById( 'output-textarea' );
+  }
+
+  public get outputElemValue(): string | null {
+    const outpuElem = this.outputElem;
+
+    if ( outpuElem )
+      return outpuElem.nodeValue;
+
+    return null;
   }
 
   public get outputSelectorElem(): HTMLElement | null {
