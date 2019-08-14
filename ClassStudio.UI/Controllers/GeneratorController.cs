@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassStudio.Core.Generators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,9 @@ namespace ClassStudio.UI.Controllers
     public class GeneratorController : ControllerBase
     {
         [HttpPost]
-        public async Task XMLStringToCSharp(string xml)
+        public string XMLStringToCSharp([FromBody]string xml)
         {
-
+            return XML.ToCSharp( xml );
         }
     }
 }
