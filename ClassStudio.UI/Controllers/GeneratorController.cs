@@ -1,10 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ClassStudio.Core.Generators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ClassStudio.Core.Generators;
+using ClassStudio.UI.Models.DTO;
+using Newtonsoft.Json;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -13,9 +23,10 @@ namespace ClassStudio.UI.Controllers
     public class GeneratorController : ControllerBase
     {
         [HttpPost]
-        public string XMLStringToCSharp([FromBody]string xml)
+        [Route( "XMLStringToCSharp" )]
+        public string XMLStringToCSharp([FromBody]XMLStringToCSharpDTO dto)
         {
-            return XML.ToCSharp( xml );
+            return XML.ToCSharp( dto.XML );
         }
     }
 }
