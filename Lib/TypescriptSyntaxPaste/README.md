@@ -2,7 +2,7 @@
 
 ----
 
-**Original Repository: https://github.com/nhabuiduc/**
+**Original Repository: https://github.com/nhabuiduc/TypescriptSyntaxPaste**
 
 Adapted and migrated to .NET Core 3.
 
