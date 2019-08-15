@@ -1,4 +1,4 @@
-﻿extensions: .cs .ts .js .css .less .scss
+extensions: .cs .ts .js .css .less .scss
 /*
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
@@ -8,7 +8,7 @@
  */
 
 extensions: .cshtml
-@* 
+@*
  *
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *

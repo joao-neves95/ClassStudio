@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +17,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ElectronNET.API;
+using System.Text.Json;
+using System.IO;
+using ElectronNET.API.Entities;
 
 namespace ClassStudio.UI
 {
@@ -24,7 +35,12 @@ namespace ClassStudio.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                    .AddJsonOptions( options =>
+                    {
+                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                    } );
+
             services.AddRazorPages();
         }
 
@@ -43,21 +59,28 @@ namespace ClassStudio.UI
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthorization();
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints( endpoints =>
-             {
-                 endpoints.MapControllerRoute(
-                     name: "default",
-                     pattern: "{controller=Home}/{action=Index}/{id?}" );
-                 endpoints.MapRazorPages();
-             } );
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
 
-            Task.Run( async () => await Electron.WindowManager.CreateWindowAsync() );
+                endpoints.MapRazorPages();
+            } );
+
+            Task.Run( async () => await Electron.WindowManager.CreateWindowAsync(
+                new BrowserWindowOptions() {
+                    Height = 700,
+                    Width = 900,
+                    Center = true
+                }
+            ) );
         }
     }
 }

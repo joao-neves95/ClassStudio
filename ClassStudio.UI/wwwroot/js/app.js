@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
+
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,15 +45,22 @@ System.register("httpClient", [], function (exports_2, context_2) {
                 static get(url) {
                     return __awaiter(this, void 0, void 0, function* () {
                         return yield fetch(url, {
-                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json, text/plain',
+                            },
+                            method: 'GET'
                         });
                     });
                 }
                 static post(url, data) {
                     return __awaiter(this, void 0, void 0, function* () {
                         return yield fetch(url, {
+                            headers: {
+                                'Accept': 'application/json, text/plain',
+                                'Content-Type': 'application/json;charset=UTF-8'
+                            },
                             method: 'POST',
-                            body: data
+                            body: JSON.stringify(data)
                         });
                     });
                 }
@@ -72,7 +87,7 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
                 get inputElemValue() {
                     const inputElem = this.inputElem;
                     if (inputElem)
-                        return inputElem.nodeValue;
+                        return inputElem.value;
                     return null;
                 }
                 get inputSelectorElem() {
@@ -81,7 +96,7 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
                 get inputSelectorValue() {
                     const inputSelectorElem = this.inputSelectorElem;
                     if (inputSelectorElem)
-                        return inputSelectorElem.nodeValue;
+                        return inputSelectorElem.value;
                     return null;
                 }
                 get outputElem() {
@@ -99,7 +114,7 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
                 get outputSelectorValue() {
                     const outputSelectorElem = this.outputSelectorElem;
                     if (outputSelectorElem)
-                        return outputSelectorElem.nodeValue;
+                        return outputSelectorElem.value;
                     return null;
                 }
                 get compileBtnElem() {
@@ -126,13 +141,10 @@ System.register("Generator/generator.services", ["httpClient"], function (export
                     return __awaiter(this, void 0, void 0, function* () {
                         if (!input)
                             null;
-                        const res = yield httpClient_1.HttpClient.post('/generator/XMLStringToCSharp', {});
-                        if (res.ok) {
+                        let res = yield httpClient_1.HttpClient.post('api/generator/XMLStringToCSharp', { XML: input });
+                        if (res.ok)
                             return yield res.json();
-                        }
-                        else {
-                            return res.statusText;
-                        }
+                        return JSON.stringify(yield res.json());
                     });
                 }
             };
@@ -169,9 +181,10 @@ System.register("Generator/generator.controller", ["Generator/generator.view", "
                         const outputType = this.view.outputSelectorValue;
                         const inputCode = this.view.inputElemValue;
                         const outputElem = this.view.outputElem;
-                        if (outputElem)
-                            yield this.service.compile(inputCode);
-                        return false;
+                        if (!inputCode || !outputElem)
+                            return false;
+                        let outputCode = yield this.service.compile(inputCode);
+                        outputElem.value = outputCode;
                     }));
                 }
             };
@@ -184,9 +197,9 @@ System.register("main", ["Generator/generator.controller"], function (exports_6,
     var generator_controller_1;
     var __moduleName = context_6 && context_6.id;
     function main() {
-        console.log('Start.');
         new generator_controller_1.GeneratorController();
     }
+    exports_6("main", main);
     return {
         setters: [
             function (generator_controller_1_1) {

@@ -1,5 +1,13 @@
-﻿import { HttpClient } from '../httpClient';
+﻿/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
 
+
+import { HttpClient } from '../httpClient';
 
 export class GeneratorService {
 
@@ -7,15 +15,12 @@ export class GeneratorService {
     if ( !input )
       null;
 
-    const res = await HttpClient.post( '/generator/XMLStringToCSharp', {  } );
+    let res = await HttpClient.post( 'api/generator/XMLStringToCSharp', { XML: input } );
 
-    if (res.ok) {
+    if ( res.ok )
       return await res.json();
 
-    } else {
-      return res.statusText;
-    }
-
+    return JSON.stringify( await res.json() );
   }
 
 }
