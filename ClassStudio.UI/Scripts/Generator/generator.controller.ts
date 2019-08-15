@@ -1,4 +1,12 @@
-﻿
+﻿/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
+
+
 import { GeneratorView } from './generator.view';
 import { GeneratorService } from './generator.services';
 
@@ -17,6 +25,8 @@ export class GeneratorController {
 
   // #endregion PROPERTIES
 
+  // #region METHODS
+
   private addListeners(): void {
     const compileBtnElem = this.view.compileBtnElem;
 
@@ -24,16 +34,21 @@ export class GeneratorController {
       return;
 
     compileBtnElem.addEventListener( 'click', async ( e: MouseEvent ) => {
+
       const inputType = this.view.inputSelectorValue;
       const outputType = this.view.outputSelectorValue;
-      const inputCode = this.view.inputElemValue;
-      const outputElem = this.view.outputElem;
+      const inputCode: string | null = this.view.inputElemValue;
+      const outputElem: HTMLInputElement | null = this.view.outputElem;
 
-      if ( outputElem )
-        await this.service.compile( inputCode );
+      if ( !inputCode || !outputElem )
+        return false;
 
-      return false;
+      let outputCode = await this.service.compile( inputCode );
+      outputElem.value = outputCode;
 
     } );
   }
+
+  // #endregion METHODS
+
 }
