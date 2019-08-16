@@ -8,7 +8,7 @@
     "appId": "com.ClassStudio.app",
     "productName": "ClassStudio",
     "copyright": "Copyright © 2019",
-    "buildVersion": "1.0.0",
+    "buildVersion": "0.1.0",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
