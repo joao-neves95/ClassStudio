@@ -26,7 +26,16 @@ namespace ClassStudio.UI.Controllers
         [Route( "XMLStringToCSharp" )]
         public string XMLStringToCSharp([FromBody]XMLStringToCSharpDTO dto)
         {
-            return XML.ToCSharp( dto.XML );
+            try
+            {
+                // TEMPORARY.
+                return CSharp.ToTypeScript( dto.XML );
+                //return XML.ToCSharp( dto.XML );
+            }
+            catch (Exception e)
+            {
+                return $"{e.Message} \n{e.StackTrace}";
+            }
         }
     }
 }
