@@ -12,7 +12,11 @@
       "commandName": "Executable",
       "executablePath": "electronize",
       "commandLineArgs": "start",
-      "workingDirectory": "."
+      "workingDirectory": ".",
+      // TODO: REMOVE FOR PRODUCTION.
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     },
 
     "IIS Express": {

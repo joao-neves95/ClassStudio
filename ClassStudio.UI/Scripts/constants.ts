@@ -7,7 +7,7 @@
  */
 
 
-export const Constants = Object.freeze({
+export const Constants = Object.freeze( {
   Ids: {
     Generator: {
       inputSelector: 'input-selector',
