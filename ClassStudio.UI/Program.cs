@@ -18,7 +18,7 @@ using ElectronNET.API;
 
 namespace ClassStudio.UI
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
