@@ -7,14 +7,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ClassStudio.Core.Generators;
 using ClassStudio.UI.Models.DTO;
-using Newtonsoft.Json;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -28,9 +23,21 @@ namespace ClassStudio.UI.Controllers
         {
             try
             {
-                // TEMPORARY.
-                return CSharp.ToTypeScript( dto.XML );
-                //return XML.ToCSharp( dto.XML );
+                return XML.ToCSharp( dto.XML );
+            }
+            catch (Exception e)
+            {
+                return $"{e.Message} \n{e.StackTrace}";
+            }
+        }
+
+        [HttpPost]
+        [Route( "CSharpToTypescript" )]
+        public string CSharpToTypescript([FromBody]CSharpToTypescript dto)
+        {
+            try
+            {
+                return CSharp.ToTypeScript( dto.Typescript );
             }
             catch (Exception e)
             {
