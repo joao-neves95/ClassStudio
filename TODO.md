@@ -13,3 +13,5 @@
 - Add XML to JSON compilation support.
 
 - Add JSON to XML compilation support.
+
+- [Feature]: Add a string repeater (support for patterns, regex, etc.).
