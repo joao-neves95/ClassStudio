@@ -43,8 +43,7 @@ export class GeneratorController {
       if ( !inputCode || !outputElem )
         return false;
 
-      let outputCode = await this.service.compile( inputCode );
-      outputElem.value = outputCode;
+      outputElem.value = await this.service.compile( inputCode, Number( inputType ), Number( outputType ) );
 
     } );
   }
