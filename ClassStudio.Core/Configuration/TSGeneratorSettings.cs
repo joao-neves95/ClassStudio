@@ -14,7 +14,7 @@ namespace ClassStudio.Core.Configuration
 
         public bool IsConvertMemberToCamelCase { get { return false; } set => throw new NotImplementedException(); }
 
-        public bool IsConvertToInterface { get { return true; } set => throw new NotImplementedException(); }
+        public bool IsConvertToInterface { get { return false; } set => throw new NotImplementedException(); }
 
         public bool IsInterfaceOptionalProperties { get { return false; } set => throw new NotImplementedException(); }
 
