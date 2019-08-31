@@ -19,11 +19,11 @@ namespace ClassStudio.UI.Controllers
     {
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
-        public string XMLStringToCSharp([FromBody]XMLStringToCSharpDTO dto)
+        public string XMLStringToCSharp([FromBody]GeneratorDTO dto)
         {
             try
             {
-                return XML.ToCSharp( dto.XML );
+                return XML.ToCSharp( dto.Input );
             }
             catch (Exception e)
             {
@@ -33,11 +33,11 @@ namespace ClassStudio.UI.Controllers
 
         [HttpPost]
         [Route( "CSharpToTypescript" )]
-        public string CSharpToTypescript([FromBody]CSharpToTypescript dto)
+        public string CSharpToTypescript([FromBody]GeneratorDTO dto)
         {
             try
             {
-                return CSharp.ToTypeScript( dto.Typescript );
+                return CSharp.ToTypeScript( dto.Input );
             }
             catch (Exception e)
             {
