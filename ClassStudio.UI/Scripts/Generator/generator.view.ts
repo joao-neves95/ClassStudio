@@ -23,15 +23,15 @@ export class GeneratorView {
     return null;
   }
 
-  public get inputSelectorElem(): HTMLInputElement | null {
-    return <HTMLInputElement>document.getElementById( Constants.Ids.Generator.inputSelector );
+  public get inputSelectorElem(): HTMLSelectElement | null {
+    return <HTMLSelectElement>document.getElementById( Constants.Ids.Generator.inputSelector );
   }
 
   public get inputSelectorValue(): string | null {
     const inputSelectorElem = this.inputSelectorElem;
 
     if ( inputSelectorElem )
-      return inputSelectorElem.value;
+      return inputSelectorElem.selectedOptions[0].value;
 
     return null
   }
@@ -53,11 +53,11 @@ export class GeneratorView {
     return <HTMLSelectElement>document.getElementById( Constants.Ids.Generator.outputSelector );
   }
 
-  public get outputSelectorValue(): string | null{
+  public get outputSelectorValue(): string | null {
     const outputSelectorElem = this.outputSelectorElem;
 
     if ( outputSelectorElem )
-      return outputSelectorElem.value;
+      return outputSelectorElem.selectedOptions[0].value;
 
     return null
   }

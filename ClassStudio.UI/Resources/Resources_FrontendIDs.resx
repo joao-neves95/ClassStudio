@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ASP_POST" xml:space="preserve">
-    <value>ASP-POST</value>
+  <data name="Generator_InputTypeSelector" xml:space="preserve">
+    <value>input-selector</value>
+  </data>
+  <data name="Generator_OutputTypeSelector" xml:space="preserve">
+    <value>output-selector</value>
   </data>
 </root>

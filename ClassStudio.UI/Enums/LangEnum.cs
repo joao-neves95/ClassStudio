@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ClassStudio.UI.Enums
 {
-    public enum LangEnym
+    public enum LangEnum
     {
         XML = 1,
         CSharp = 2,

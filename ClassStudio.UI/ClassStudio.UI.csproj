@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Scripts\constants.ts" />
+    <None Remove="Scripts\Enums\LangEnum.ts" />
     <None Remove="Scripts\Generator\generator.controller.ts" />
     <None Remove="Scripts\Generator\generator.model.ts" />
     <None Remove="Scripts\Generator\generator.services.ts" />
@@ -12,16 +13,16 @@
     <None Remove="Scripts\main.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources\Resources_Keys.Designer.cs">
+    <Compile Update="Resources\Resources_FrontendIDs.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources_Keys.resx</DependentUpon>
+      <DependentUpon>Resources_FrontendIDs.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Resources_Keys.resx">
+    <EmbeddedResource Update="Resources\Resources_FrontendIDs.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources_Keys.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources_FrontendIDs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
