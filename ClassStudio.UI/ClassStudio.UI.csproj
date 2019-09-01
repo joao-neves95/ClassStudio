@@ -1,15 +1,60 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Version>0.2.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>João Neves (shivayl)</Authors>
+    <Company>João Neves (shivayl)</Company>
+    <Copyright>João Neves (shivayl)</Copyright>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/joao-neves95/ClassStudio</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/joao-neves95/ClassStudio</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Scripts\constants.ts" />
+    <None Remove="Scripts\Enums\LangEnum.ts" />
     <None Remove="Scripts\Generator\generator.controller.ts" />
     <None Remove="Scripts\Generator\generator.model.ts" />
     <None Remove="Scripts\Generator\generator.services.ts" />
     <None Remove="Scripts\Generator\generator.view.ts" />
     <None Remove="Scripts\httpClient.ts" />
     <None Remove="Scripts\main.ts" />
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resources_FrontendIDs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources_FrontendIDs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resources_Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources_Global.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Resources_FrontendIDs.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources_FrontendIDs.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Resources_Global.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources_Global.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="electron.manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassStudio.Core\ClassStudio.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="5.22.14" />
@@ -19,13 +64,5 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassStudio.Core\ClassStudio.Core.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Update="electron.manifest.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 </Project>

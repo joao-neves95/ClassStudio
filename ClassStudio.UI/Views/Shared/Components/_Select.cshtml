@@ -1,4 +1,4 @@
-﻿@* 
+﻿@*
  *
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
@@ -11,13 +11,13 @@
 
 <div uk-form-custom="target: > * > span:first-child">
 
-    <select id="@Model.Id">
-        
-        @for(int i = 0; i < Model.Options.Count; ++i)
+    <select id="@Model.Id" name="@Model.Id">
+
+        @for (int i = 0; i < Model.Options.Count; ++i)
         {
-            <option>@Model.Options[i].Label</option>
+            <option value="@Model.Options[i].Value">@Model.Options[i].Label</option>
         }
-    
+
     </select>
 
     <button class="uk-button uk-button-default" type="button" tabindex="-1">

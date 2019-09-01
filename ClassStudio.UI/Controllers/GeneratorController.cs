@@ -7,14 +7,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ClassStudio.Core.Generators;
 using ClassStudio.UI.Models.DTO;
-using Newtonsoft.Json;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -24,9 +19,30 @@ namespace ClassStudio.UI.Controllers
     {
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
-        public string XMLStringToCSharp([FromBody]XMLStringToCSharpDTO dto)
+        public string XMLStringToCSharp([FromBody]GeneratorDTO dto)
         {
-            return XML.ToCSharp( dto.XML );
+            try
+            {
+                return XML.ToCSharp( dto.Input );
+            }
+            catch (Exception e)
+            {
+                return $"{e.Message} \n{e.StackTrace}";
+            }
+        }
+
+        [HttpPost]
+        [Route( "CSharpToTypescript" )]
+        public string CSharpToTypescript([FromBody]GeneratorDTO dto)
+        {
+            try
+            {
+                return CSharp.ToTypeScript( dto.Input );
+            }
+            catch (Exception e)
+            {
+                return $"{e.Message} \n{e.StackTrace}";
+            }
         }
     }
 }

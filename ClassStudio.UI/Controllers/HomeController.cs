@@ -30,49 +30,61 @@ namespace ClassStudio.UI.Controllers
 
         public IActionResult Index()
         {
-            SelectViewModel selectViewModel = new SelectViewModel()
+            IndexViewModel indexViewModel = new IndexViewModel()
             {
-                Options = new List<OptionViewModel>()
+                InputTypeSelector = new SelectViewModel()
                 {
-                    new OptionViewModel()
+                    Id = "input-selector", // Resources.Resources_FrontendIDs.Generator_InputTypeSelector,
+                    Options = new List<OptionViewModel>()
                     {
-                        Label = "XML",
-                        Value = ((int)LangEnym.XML).ToString()
-                    },
-                    new OptionViewModel()
+                        new OptionViewModel()
+                        {
+                            Label = "XML",
+                            Value = ((int)LangEnum.XML).ToString()
+                        },
+                        new OptionViewModel()
+                        {
+                            Label = "C#",
+                            Value = ((int)LangEnum.CSharp).ToString()
+                        }
+                    }
+                },
+                OutputTypeSelector = new SelectViewModel()
+                {
+                    Id = "output-selector", // Resources.Resources_FrontendIDs.Generator_OutputTypeSelector,
+                    Options = new List<OptionViewModel>()
                     {
-                        Label = "C#",
-                        Value = ((int)LangEnym.CSharp).ToString()
+                        new OptionViewModel()
+                        {
+                            Label = "C#",
+                            Value = ((int)LangEnum.CSharp).ToString()
+                        },
+                        new OptionViewModel()
+                        {
+                            Label = "TypeScript",
+                            Value = ((int)LangEnum.TypeScript).ToString()
+                        },
                     }
                 }
             };
 
-            IndexViewModel indexViewModel = new IndexViewModel()
-            {
-                InputTypeSelector = selectViewModel,
-                OutputTypeSelector = selectViewModel
-            };
-
-            indexViewModel.InputTypeSelector.Id = "input-selector";
-            indexViewModel.OutputTypeSelector.Id = "output-selector";
-
-            return View( indexViewModel );
-        }
-
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache( Duration = 0, Location = ResponseCacheLocation.None, NoStore = true )]
-        public IActionResult Error()
-        {
-            return View( new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier } );
-        }
+            return View(indexViewModel );
     }
+
+    public IActionResult About()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [ResponseCache( Duration = 0, Location = ResponseCacheLocation.None, NoStore = true )]
+    public IActionResult Error()
+    {
+        return View( new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier } );
+    }
+}
 }

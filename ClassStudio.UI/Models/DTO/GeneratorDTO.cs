@@ -6,19 +6,13 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace ClassStudio.UI.Enums
+namespace ClassStudio.UI.Models.DTO
 {
-    public enum LangEnym
+    public class GeneratorDTO
     {
-        XML = 1,
-        CSharp = 2,
-        TypeScript = 3,
-        JavaScript = 4,
-        JSON = 5
+        [Required]
+        public string Input { get; set; }
     }
 }

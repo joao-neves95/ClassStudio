@@ -2,8 +2,6 @@
 
 - Finish migrating from Bootstrap into UIKit.
 
-- Solve issue with hardcoded PORTS on the UI.
-
 - Make script to move all frontend npm dist/ libs into wwwroot in every build.
 
 - Create an auto-update system.

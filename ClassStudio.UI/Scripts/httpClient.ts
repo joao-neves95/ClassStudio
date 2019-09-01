@@ -6,7 +6,6 @@
  *
  */
 
-
 export class HttpClient {
   public static async get( url: string ): Promise<Response> {
     return await fetch( url, {

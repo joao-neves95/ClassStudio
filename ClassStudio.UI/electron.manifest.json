@@ -7,8 +7,8 @@
   "build": {
     "appId": "com.ClassStudio.app",
     "productName": "ClassStudio",
-    "copyright": "Copyright © 2019",
-    "buildVersion": "0.1.0",
+    "copyright": "Copyright © 2019 - João Neves (shivayl)",
+    "buildVersion": "0.2.0",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"

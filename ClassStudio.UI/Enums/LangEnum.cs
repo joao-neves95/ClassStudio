@@ -8,15 +8,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ClassStudio.UI.Models.DTO
+namespace ClassStudio.UI.Enums
 {
-    public class XMLStringToCSharpDTO
+    public enum LangEnum
     {
-        [Required]
-        public string XML { get; set; }
+        XML = 1,
+        CSharp = 2,
+        TypeScript = 3,
+        JavaScript = 4,
+        JSON = 5
     }
 }

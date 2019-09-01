@@ -6,7 +6,6 @@
  *
  */
 
-
 import { GeneratorController } from './Generator/generator.controller';
 
 export function main() {
