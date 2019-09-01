@@ -26,7 +26,7 @@ System.register("constants", [], function (exports_1, context_1) {
                 Ids: {
                     Generator: {
                         inputSelector: 'input-selector',
-                        outputSelector: 'input-selector',
+                        outputSelector: 'output-selector',
                         compileBtn: 'compile-btn'
                     }
                 }
@@ -96,7 +96,7 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
                 get inputSelectorValue() {
                     const inputSelectorElem = this.inputSelectorElem;
                     if (inputSelectorElem)
-                        return inputSelectorElem.value;
+                        return inputSelectorElem.selectedOptions[0].value;
                     return null;
                 }
                 get outputElem() {
@@ -114,7 +114,7 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
                 get outputSelectorValue() {
                     const outputSelectorElem = this.outputSelectorElem;
                     if (outputSelectorElem)
-                        return outputSelectorElem.value;
+                        return outputSelectorElem.selectedOptions[0].value;
                     return null;
                 }
                 get compileBtnElem() {
@@ -125,37 +125,77 @@ System.register("Generator/generator.view", ["constants"], function (exports_3, 
         }
     };
 });
-System.register("Generator/generator.services", ["httpClient"], function (exports_4, context_4) {
+System.register("Enums/LangEnum", [], function (exports_4, context_4) {
     "use strict";
-    var httpClient_1, GeneratorService;
+    var LangEnum;
     var __moduleName = context_4 && context_4.id;
+    return {
+        setters: [],
+        execute: function () {
+            (function (LangEnum) {
+                LangEnum[LangEnum["XML"] = 1] = "XML";
+                LangEnum[LangEnum["CSharp"] = 2] = "CSharp";
+                LangEnum[LangEnum["TypeScript"] = 3] = "TypeScript";
+                LangEnum[LangEnum["JavaScript"] = 4] = "JavaScript";
+                LangEnum[LangEnum["JSON"] = 5] = "JSON";
+            })(LangEnum || (LangEnum = {}));
+            exports_4("LangEnum", LangEnum);
+            ;
+        }
+    };
+});
+System.register("Generator/generator.services", ["httpClient", "Enums/LangEnum"], function (exports_5, context_5) {
+    "use strict";
+    var httpClient_1, LangEnum_1, GeneratorService;
+    var __moduleName = context_5 && context_5.id;
     return {
         setters: [
             function (httpClient_1_1) {
                 httpClient_1 = httpClient_1_1;
+            },
+            function (LangEnum_1_1) {
+                LangEnum_1 = LangEnum_1_1;
             }
         ],
         execute: function () {
             GeneratorService = class GeneratorService {
-                compile(input) {
+                get baseApiPath() {
+                    return 'api/generator/';
+                }
+                ;
+                compile(inputCode, inputType, outputType) {
                     return __awaiter(this, void 0, void 0, function* () {
-                        if (!input)
-                            null;
-                        let res = yield httpClient_1.HttpClient.post('api/generator/XMLStringToCSharp', { XML: input });
+                        if (!inputCode || !inputType || !outputType)
+                            return "[INPUT NOT VALID]";
+                        let res;
+                        if (inputType == LangEnum_1.LangEnum.XML && outputType == LangEnum_1.LangEnum.CSharp) {
+                            res = yield this.postInputToServer('XMLStringToCSharp', inputCode);
+                        }
+                        else if (inputType == LangEnum_1.LangEnum.CSharp && outputType == LangEnum_1.LangEnum.TypeScript) {
+                            res = yield this.postInputToServer('CSharpToTypescript', inputCode);
+                        }
+                        else {
+                            return "[NOT IMPLEMENTED]";
+                        }
                         if (res.ok)
                             return yield res.json();
                         return JSON.stringify(yield res.json());
                     });
                 }
+                postInputToServer(endpoint, input) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        return yield httpClient_1.HttpClient.post(this.baseApiPath + endpoint, { Input: input });
+                    });
+                }
             };
-            exports_4("GeneratorService", GeneratorService);
+            exports_5("GeneratorService", GeneratorService);
         }
     };
 });
-System.register("Generator/generator.controller", ["Generator/generator.view", "Generator/generator.services"], function (exports_5, context_5) {
+System.register("Generator/generator.controller", ["Generator/generator.view", "Generator/generator.services"], function (exports_6, context_6) {
     "use strict";
     var generator_view_1, generator_services_1, GeneratorController;
-    var __moduleName = context_5 && context_5.id;
+    var __moduleName = context_6 && context_6.id;
     return {
         setters: [
             function (generator_view_1_1) {
@@ -183,23 +223,22 @@ System.register("Generator/generator.controller", ["Generator/generator.view", "
                         const outputElem = this.view.outputElem;
                         if (!inputCode || !outputElem)
                             return false;
-                        let outputCode = yield this.service.compile(inputCode);
-                        outputElem.value = outputCode;
+                        outputElem.value = yield this.service.compile(inputCode, Number(inputType), Number(outputType));
                     }));
                 }
             };
-            exports_5("GeneratorController", GeneratorController);
+            exports_6("GeneratorController", GeneratorController);
         }
     };
 });
-System.register("main", ["Generator/generator.controller"], function (exports_6, context_6) {
+System.register("main", ["Generator/generator.controller"], function (exports_7, context_7) {
     "use strict";
     var generator_controller_1;
-    var __moduleName = context_6 && context_6.id;
+    var __moduleName = context_7 && context_7.id;
     function main() {
         new generator_controller_1.GeneratorController();
     }
-    exports_6("main", main);
+    exports_7("main", main);
     return {
         setters: [
             function (generator_controller_1_1) {
