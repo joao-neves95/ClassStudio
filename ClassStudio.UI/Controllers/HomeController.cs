@@ -34,7 +34,7 @@ namespace ClassStudio.UI.Controllers
             {
                 InputTypeSelector = new SelectViewModel()
                 {
-                    Id = Resources.Resources_FrontendIDs.Generator_InputTypeSelector,
+                    Id = "input-selector", // Resources.Resources_FrontendIDs.Generator_InputTypeSelector,
                     Options = new List<OptionViewModel>()
                     {
                         new OptionViewModel()
@@ -51,7 +51,7 @@ namespace ClassStudio.UI.Controllers
                 },
                 OutputTypeSelector = new SelectViewModel()
                 {
-                    Id = Resources.Resources_FrontendIDs.Generator_OutputTypeSelector,
+                    Id = "output-selector", // Resources.Resources_FrontendIDs.Generator_OutputTypeSelector,
                     Options = new List<OptionViewModel>()
                     {
                         new OptionViewModel()

@@ -30,14 +30,14 @@ namespace ClassStudio.UI.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources_FrontendIDs {
+    public class Resources_Global {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources_FrontendIDs() {
+        internal Resources_Global() {
         }
         
         /// <summary>
@@ -46,10 +46,10 @@ namespace ClassStudio.UI.Resources {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClassStudio.UI.Resources.Resources_FrontendIDs", typeof(Resources_FrontendIDs).Assembly);
+                //if (object.ReferenceEquals(resourceMan, null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ClassStudio.UI.Resources.Resources_Global", typeof(Resources_Global).Assembly);
                     resourceMan = temp;
-                }
+                //}
                 return resourceMan;
             }
         }
@@ -69,20 +69,11 @@ namespace ClassStudio.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to input-selector.
+        ///   Looks up a localized string similar to 0.2.0.
         /// </summary>
-        public static string Generator_InputTypeSelector {
+        public static string Version {
             get {
-                return ResourceManager.GetString("Generator_InputTypeSelector", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to output-selector.
-        /// </summary>
-        public static string Generator_OutputTypeSelector {
-            get {
-                return ResourceManager.GetString("Generator_OutputTypeSelector", resourceCulture);
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }
