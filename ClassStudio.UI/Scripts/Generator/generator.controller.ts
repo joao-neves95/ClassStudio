@@ -6,7 +6,6 @@
  *
  */
 
-
 import { GeneratorView } from './generator.view';
 import { GeneratorService } from './generator.services';
 

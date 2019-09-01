@@ -6,7 +6,6 @@
  *
  */
 
-
 import { HttpClient } from '../httpClient';
 import { LangEnum } from '../Enums/LangEnum';
 
