@@ -85,7 +85,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Folder Include="Scripts\src\app\shared\" />
+    <Folder Include="Scripts\src\app\pages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">
