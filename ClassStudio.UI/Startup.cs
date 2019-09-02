@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
@@ -31,13 +32,16 @@ namespace ClassStudio.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            //.AddJsonOptions( options =>
-            //{
-            //    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-            //} );
+            services.AddMvc( options => options.EnableEndpointRouting = false )
+                    .AddJsonOptions( options =>
+                    {
+                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                    } );
 
-            services.AddRazorPages();
+            services.AddSpaStaticFiles( configuration =>
+            {
+                configuration.RootPath = "Scripts/dist/class-studio";
+            } );
         }
 
         #endregion CONFIGURATION
@@ -62,6 +66,7 @@ namespace ClassStudio.UI
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseRouting();
 
@@ -71,8 +76,19 @@ namespace ClassStudio.UI
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
+            } );
 
-                endpoints.MapRazorPages();
+            app.UseSpa( spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "Scripts";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer( npmScript: "start" );
+                }
             } );
 
             Task.Run( async () =>
@@ -80,8 +96,8 @@ namespace ClassStudio.UI
                 await Electron.WindowManager.CreateWindowAsync(
                     new BrowserWindowOptions()
                     {
-                        Height = 700,
-                        Width = 900,
+                        Height = 900,
+                        Width = 1000,
                         Center = true
                     } );
 

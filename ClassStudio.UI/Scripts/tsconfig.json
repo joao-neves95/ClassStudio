@@ -1,21 +1,30 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "alwaysStrict": true,
-    "lib": [ "es6", "dom" ],
-    "module": "system",
+    "baseUrl": "./",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
     "newLine": "LF",
-    "noEmit": false,
-    "noEmitOnError": false,
-    "noImplicitAny": false,
-    "outFile": "../wwwroot/js/app.js",
-    "pretty": true,
+    "outDir": "./dist/out-tsc",
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "exclude": [
     "node_modules",
-    "wwwroot"
+    "typings"
   ]
 }
