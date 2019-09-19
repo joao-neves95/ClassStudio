@@ -68,7 +68,7 @@ namespace ClassStudio.UI.Controllers
                 }
             };
 
-            return View(indexViewModel );
+            return View( indexViewModel );
     }
 
     public IActionResult About()

@@ -33,15 +33,9 @@ namespace ClassStudio.UI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc( options => options.EnableEndpointRouting = false )
-                    .AddJsonOptions( options =>
-                    {
-                        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                    } );
+                    .AddJsonOptions( options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true );
 
-            services.AddSpaStaticFiles( configuration =>
-            {
-                configuration.RootPath = "Scripts/dist/class-studio";
-            } );
+            services.AddSpaStaticFiles( configuration => configuration.RootPath = "Scripts/dist/class-studio" );
         }
 
         #endregion CONFIGURATION
@@ -74,7 +68,7 @@ namespace ClassStudio.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    pattern: "{controller}/{action=Index}/{id?}"
                 );
             } );
 
