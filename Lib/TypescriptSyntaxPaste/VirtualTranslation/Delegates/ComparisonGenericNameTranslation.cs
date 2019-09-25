@@ -6,18 +6,30 @@
  *
  */
 
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System;
-using System.Collections.Generic;
+After:
+using RoslynTypeScript.Translation;
+using System;
+*/
+using RoslynTypeScript.Translation;
 using System.Linq;
-using System.Text;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using RoslynTypeScript.Translation;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.VirtualTranslation.Delegates
 {
     public class ComparisonGenericNameTranslation : BaseFunctionGenericNameTranslation
     {
-        public ComparisonGenericNameTranslation(GenericNameTranslation genericNameTranslation) : base(genericNameTranslation)
+        public ComparisonGenericNameTranslation(GenericNameTranslation genericNameTranslation) : base( genericNameTranslation )
         {
         }
 

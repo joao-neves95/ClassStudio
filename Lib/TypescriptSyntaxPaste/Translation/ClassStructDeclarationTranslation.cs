@@ -6,6 +6,9 @@
  *
  */
 
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +17,34 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using RoslynTypeScript.Patch;
+After:
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using RoslynTypeScript.Patch;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Syntax;
+using System.Threading.Tasks;
+*/
 
 namespace RoslynTypeScript.Translation
 {
-    public abstract class ClassStructDeclarationTranslation :TypeDeclarationTranslation
+    public abstract class ClassStructDeclarationTranslation : TypeDeclarationTranslation
     {
-        public ClassStructDeclarationTranslation(TypeDeclarationSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public ClassStructDeclarationTranslation(TypeDeclarationSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
             if (syntax.BaseList != null)
             {
-                BaseList = syntax.BaseList.Get<BaseListTranslation>(this);                
-            }           
+                BaseList = syntax.BaseList.Get<BaseListTranslation>( this );
+            }
         }
 
         public override void ApplyPatch()
         {
             base.ApplyPatch();
-           // ConstructorPatch constructorPatch = new ConstructorPatch();
-           // constructorPatch.Apply(this);
+            // ConstructorPatch constructorPatch = new ConstructorPatch();
+            // constructorPatch.Apply(this);
         }
 
         public BaseListTranslation BaseList { get; set; }

@@ -7,13 +7,25 @@
  */
 
 using Microsoft.CodeAnalysis;
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
+After:
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+*/
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
-using System.Text;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
@@ -26,17 +38,17 @@ namespace RoslynTypeScript.Translation
         }
 
         public SwitchSectionTranslation() { }
-        public SwitchSectionTranslation(SwitchSectionSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public SwitchSectionTranslation(SwitchSectionSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Labels = syntax.Labels.Get<SwitchLabelSyntax, SwitchLabelTranslation>(this);
-            Statements = syntax.Statements.Get<StatementSyntax, StatementTranslation>(this);
+            Labels = syntax.Labels.Get<SwitchLabelSyntax, SwitchLabelTranslation>( this );
+            Statements = syntax.Statements.Get<StatementSyntax, StatementTranslation>( this );
         }
-        public SyntaxListTranslation<SwitchLabelSyntax,SwitchLabelTranslation> Labels { get; set; }
-        public SyntaxListTranslation<StatementSyntax,StatementTranslation> Statements { get; set; }
+        public SyntaxListTranslation<SwitchLabelSyntax, SwitchLabelTranslation> Labels { get; set; }
+        public SyntaxListTranslation<StatementSyntax, StatementTranslation> Statements { get; set; }
 
         public bool IsDefaultCase
         {
-            get { return Labels.GetEnumerable().Any(f => f.Syntax.IsKind(SyntaxKind.DefaultSwitchLabel)); }
+            get { return Labels.GetEnumerable().Any( f => f.Syntax.IsKind( SyntaxKind.DefaultSwitchLabel ) ); }
         }
 
         protected override string InnerTranslate()

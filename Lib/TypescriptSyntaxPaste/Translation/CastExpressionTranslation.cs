@@ -6,14 +6,12 @@
  *
  */
 
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using Microsoft.CodeAnalysis.CSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+After:
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+*/
 
 namespace RoslynTypeScript.Translation
 {
@@ -25,10 +23,10 @@ namespace RoslynTypeScript.Translation
             set { base.Syntax = value; }
         }
         public CastExpressionTranslation() { }
-        public CastExpressionTranslation(CastExpressionSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public CastExpressionTranslation(CastExpressionSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Type = syntax.Type.Get<TypeTranslation>(this);
-            Expression = syntax.Expression.Get<ExpressionTranslation>(this);
+            Type = syntax.Type.Get<TypeTranslation>( this );
+            Expression = syntax.Expression.Get<ExpressionTranslation>( this );
         }
 
         public TypeTranslation Type { get; set; }
@@ -36,7 +34,7 @@ namespace RoslynTypeScript.Translation
         public ExpressionTranslation Expression { get; set; }
 
         protected override string InnerTranslate()
-        {        
+        {
             return $"<{Type.Translate()}>{Expression.Translate()}";
         }
     }

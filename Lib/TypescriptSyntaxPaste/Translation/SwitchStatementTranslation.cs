@@ -6,14 +6,23 @@
  *
  */
 
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+After:
+using RoslynTypeScript.Patch;
+using System;
+*/
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using RoslynTypeScript.Patch;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
@@ -26,10 +35,10 @@ namespace RoslynTypeScript.Translation
         }
 
         public SwitchStatementTranslation() { }
-        public SwitchStatementTranslation(SwitchStatementSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public SwitchStatementTranslation(SwitchStatementSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Expression = syntax.Expression.Get<ExpressionTranslation>(this);
-            Sections = syntax.Sections.Get<SwitchSectionSyntax, SwitchSectionTranslation>(this);
+            Expression = syntax.Expression.Get<ExpressionTranslation>( this );
+            Sections = syntax.Sections.Get<SwitchSectionSyntax, SwitchSectionTranslation>( this );
         }
 
         public ExpressionTranslation Expression { get; set; }

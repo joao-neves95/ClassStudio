@@ -6,15 +6,16 @@
  *
  */
 
-using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RoslynTypeScript.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
@@ -32,31 +33,31 @@ namespace RoslynTypeScript.Translation
         public string OverrideOpeartor { get; set; }
 
         public AssignmentExpressionTranslation() { }
-        public AssignmentExpressionTranslation(AssignmentExpressionSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public AssignmentExpressionTranslation(AssignmentExpressionSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Left = syntax.Left.Get<ExpressionTranslation>(this);
-            Right = syntax.Right.Get<ExpressionTranslation>(this);
+            Left = syntax.Left.Get<ExpressionTranslation>( this );
+            Right = syntax.Right.Get<ExpressionTranslation>( this );
         }
 
         public override void ApplyPatch()
         {
             base.ApplyPatch();
-            Helper.ApplyFunctionBindToCorrectContext(this.Right);
+            Helper.ApplyFunctionBindToCorrectContext( this.Right );
         }
 
         protected override string InnerTranslate()
         {
-            if(OverrideOpeartor != null)
+            if (OverrideOpeartor != null)
             {
                 return $"{Left.Translate()} {OverrideOpeartor}  {Right.Translate()}";
             }
-        
+
             var operatorToken = Syntax.OperatorToken.ToString();
-            if (Helper.IsInKinds(this.Syntax,
+            if (Helper.IsInKinds( this.Syntax,
                 SyntaxKind.OrAssignmentExpression,
                 SyntaxKind.AndAssignmentExpression,
                 SyntaxKind.BitwiseOrExpression,
-                SyntaxKind.BitwiseAndExpression))
+                SyntaxKind.BitwiseAndExpression ))
             {
                 switch (this.Syntax.Kind())
                 {
@@ -74,8 +75,8 @@ namespace RoslynTypeScript.Translation
             }
 
             var rightStr = Right.Translate();
-           
-            return string.Format("{0} {1} {2}", Left.Translate(), operatorToken, rightStr);
+
+            return string.Format( "{0} {1} {2}", Left.Translate(), operatorToken, rightStr );
         }
     }
 }

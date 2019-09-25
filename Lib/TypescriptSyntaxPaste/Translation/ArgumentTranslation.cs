@@ -6,14 +6,15 @@
  *
  */
 
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
@@ -27,13 +28,26 @@ namespace RoslynTypeScript.Translation
 
         public ArgumentTranslation() { }
 
-        public ArgumentTranslation(ArgumentSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public ArgumentTranslation(ArgumentSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Expression = syntax.Expression.Get<ExpressionTranslation>(this);
+            Expression = syntax.Expression.Get<ExpressionTranslation>( this );
         }
 
+
+        /* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+        Before:
+                public ExpressionTranslation Expression { get; set; }
+
+
+                public bool IsExistingRefOrOutKeyword
+        After:
+                public ExpressionTranslation Expression { get; set; }
+
+
+                public bool IsExistingRefOrOutKeyword
+        */
         public ExpressionTranslation Expression { get; set; }
-        
+
 
         public bool IsExistingRefOrOutKeyword
         {
@@ -43,12 +57,12 @@ namespace RoslynTypeScript.Translation
         public override void ApplyPatch()
         {
             base.ApplyPatch();
-            Helper.ApplyFunctionBindToCorrectContext(this.Expression);
+            Helper.ApplyFunctionBindToCorrectContext( this.Expression );
         }
 
         protected override string InnerTranslate()
         {
-          
+
             string nameColon = string.Empty;
             if (Syntax.NameColon != null)
             {

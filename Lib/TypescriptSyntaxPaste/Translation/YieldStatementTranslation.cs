@@ -7,13 +7,28 @@
  */
 
 using Microsoft.CodeAnalysis;
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+After:
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using RoslynTypeScript.Constants;
+using System;
+*/
+using Microsoft.CodeAnalysis.CSharp;
+using
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp;
+using RoslynTypeScript.Constants;
+After:
+using System.Threading.Tasks;
+*/
+Microsoft.CodeAnalysis.CSharp.Syntax;
 using RoslynTypeScript.Constants;
 
 namespace RoslynTypeScript.Translation
@@ -27,14 +42,14 @@ namespace RoslynTypeScript.Translation
         }
 
         public YieldStatementTranslation() { }
-        public YieldStatementTranslation(YieldStatementSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public YieldStatementTranslation(YieldStatementSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
-            Expression = syntax.Expression.Get<ExpressionTranslation>(this);
+            Expression = syntax.Expression.Get<ExpressionTranslation>( this );
         }
 
         public override void ApplyPatch()
         {
-            if (Syntax.IsKind(SyntaxKind.YieldReturnStatement))
+            if (Syntax.IsKind( SyntaxKind.YieldReturnStatement ))
             {
                 var method = this.GetAncestor<MethodDeclarationTranslation>();
                 if (method != null)
@@ -50,7 +65,7 @@ namespace RoslynTypeScript.Translation
 
         protected override string InnerTranslate()
         {
-            if (Syntax.IsKind(SyntaxKind.YieldReturnStatement))
+            if (Syntax.IsKind( SyntaxKind.YieldReturnStatement ))
             {
                 var expr = Expression.Translate();
 

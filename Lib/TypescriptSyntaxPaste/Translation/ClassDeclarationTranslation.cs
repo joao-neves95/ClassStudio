@@ -6,15 +6,25 @@
  *
  */
 
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using RoslynTypeScript.Patch;
-using System;
-using System.Collections.Generic;
+After:
+using RoslynTypeScript.Contract;
+using RoslynTypeScript.Patch;
+*/
+using RoslynTypeScript.Contract;
 using System.Linq;
-using System.Text;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using RoslynTypeScript.Contract;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
@@ -26,7 +36,7 @@ namespace RoslynTypeScript.Translation
             set { base.Syntax = value; }
         }
 
-        public ClassDeclarationTranslation(ClassDeclarationSyntax syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public ClassDeclarationTranslation(ClassDeclarationSyntax syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
             var constructor = Members.GetEnumerable<ConstructorDeclarationTranslation>().FirstOrDefault();
             if (constructor == null)

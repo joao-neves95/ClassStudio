@@ -6,20 +6,30 @@
  *
  */
 
+
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using Microsoft.CodeAnalysis.CSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+After:
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+*/
+using Microsoft.CodeAnalysis;
+/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
+Before:
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
+After:
+using System.Threading.Tasks;
+*/
+
 
 namespace RoslynTypeScript.Translation
 {
-    public abstract class CSharpSyntaxTranslation :SyntaxTranslation
+    public abstract class CSharpSyntaxTranslation : SyntaxTranslation
     {
         public CSharpSyntaxTranslation() { }
-        public CSharpSyntaxTranslation(SyntaxNode syntax, SyntaxTranslation parent) : base(syntax, parent)
+        public CSharpSyntaxTranslation(SyntaxNode syntax, SyntaxTranslation parent) : base( syntax, parent )
         {
         }
     }
