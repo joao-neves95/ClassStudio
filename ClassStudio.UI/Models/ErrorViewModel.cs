@@ -6,8 +6,6 @@
  *
  */
 
-using System;
-
 namespace ClassStudio.UI.Models
 {
     public class ErrorViewModel
