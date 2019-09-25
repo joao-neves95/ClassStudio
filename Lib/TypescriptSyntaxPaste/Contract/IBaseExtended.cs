@@ -6,23 +6,7 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-After:
 using RoslynTypeScript.Translation;
-using System;
-*/
-using
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using RoslynTypeScript.Translation;
-After:
-using System.Threading.Tasks;
-*/
-RoslynTypeScript.Translation;
 
 namespace RoslynTypeScript.Contract
 {

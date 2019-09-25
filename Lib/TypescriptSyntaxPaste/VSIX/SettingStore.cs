@@ -6,57 +6,11 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.Settings;
-After:
-using Microsoft.VisualStudio.Settings;
-using Microsoft.Collections.Shell;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
-using System;
-using System.Collections.Generic;
 using System.IO;
-*/
-using Microsoft.VisualStudio.Settings;
-using Microsoft.VisualStudio.Shell;
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Linq;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-After:
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-*/
-
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using Microsoft.VisualStudio.Shell;
-After:
-using Microsoft.Text;
-*/
-using System.IO;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-After:
-using System.Linq;
-using System.Threading.Tasks;
-*/
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.IO;
-After:
 using System.Xml.Serialization;
-*/
-
 
 namespace TypescriptSyntaxPaste.VSIX
 {

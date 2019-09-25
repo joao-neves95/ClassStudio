@@ -6,65 +6,11 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-After:
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
-using System.VisualStudio.Shell;
-*/
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
 using Microsoft.VisualStudio.Shell;
 using System;
-using Microsoft.ComponentModel;
-using Microsoft.VisualStudio.Shell.Interop;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-After:
-using Microsoft.ComponentModel;
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-*/
-using Microsoft.VisualStudio.Shell;
-using System;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Globalization;
-using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 using System.ComponentModel;
-using System.Collections.Generic;
-After:
-using System.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
-*/
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using Microsoft.Runtime.InteropServices;
-After:
-using Microsoft.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
-*/
-
 
 namespace TypescriptSyntaxPaste.VSIX
 {

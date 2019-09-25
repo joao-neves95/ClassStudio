@@ -8,24 +8,8 @@
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-After:
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-*/
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-After:
-using System.Threading.Tasks;
-*/
-
 
 namespace TypescriptSyntaxPaste
 {

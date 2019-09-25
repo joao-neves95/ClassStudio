@@ -6,17 +6,6 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using Microsoft.CodeAnalysis.CSharp;
-using System;
-After:
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-*/
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -25,7 +14,6 @@ using TypescriptSyntaxPaste.VSIX;
 
 namespace TypescriptSyntaxPaste
 {
-
     public class TypeNameReplacement
     {
         public static CSharpSyntaxNode Replace(TypeNameReplacementData[] replacedTypeNameArray, CSharpSyntaxNode syntaxNode)

@@ -6,12 +6,7 @@
  *
  */
 
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using Microsoft.CodeAnalysis.CSharp;
-After:
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-*/
 
 namespace RoslynTypeScript.Translation
 {

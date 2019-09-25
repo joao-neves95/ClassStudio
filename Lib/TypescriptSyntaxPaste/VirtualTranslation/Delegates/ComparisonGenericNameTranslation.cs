@@ -6,24 +6,8 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-After:
-using RoslynTypeScript.Translation;
-using System;
-*/
 using RoslynTypeScript.Translation;
 using System.Linq;
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using RoslynTypeScript.Translation;
-After:
-using System.Threading.Tasks;
-*/
-
 
 namespace RoslynTypeScript.VirtualTranslation.Delegates
 {

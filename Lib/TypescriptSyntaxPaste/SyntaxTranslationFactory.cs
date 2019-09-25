@@ -10,15 +10,6 @@ using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-After:
-using System.Threading.Tasks;
-*/
-
-
 
 namespace RoslynTypeScript.Translation
 {

@@ -6,27 +6,7 @@
  *
  */
 
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RoslynTypeScript.Patch;
-After:
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RoslynTypeScript.Patch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Syntax;
-using System.Threading.Tasks;
-*/
 
 namespace RoslynTypeScript.Translation
 {

@@ -7,28 +7,8 @@
  */
 
 using Microsoft.CodeAnalysis;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-After:
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RoslynTypeScript.Constants;
-using System;
-*/
-using Microsoft.CodeAnalysis.CSharp;
-using
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp;
-using RoslynTypeScript.Constants;
-After:
-using System.Threading.Tasks;
-*/
-Microsoft.CodeAnalysis.CSharp.Syntax;
 using RoslynTypeScript.Constants;
 
 namespace RoslynTypeScript.Translation

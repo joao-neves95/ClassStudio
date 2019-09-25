@@ -7,29 +7,10 @@
  */
 
 using Microsoft.CodeAnalysis;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using RoslynTypeScript.Constants;
-After:
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using RoslynTypeScript.Constants;
-*/
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using RoslynTypeScript.Constants;
 using RoslynTypeScript.Translation;
-
-/* Unmerged change from project 'TypescriptSyntaxPaste (net472)'
-Before:
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-After:
-using System.Text.RegularExpressions;
-using Microsoft.Threading.Tasks;
-*/
 using System;
 using System.Collections.Generic;
 using System.Linq;
