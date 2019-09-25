@@ -79,13 +79,15 @@
     <None Remove="Scripts-OLD\Generator\generator.view.ts" />
     <None Remove="Scripts-OLD\httpClient.ts" />
     <None Remove="Scripts-OLD\main.ts" />
+    <None Remove="Scripts\src\app\enums\LangType.ts" />
+    <None Remove="Scripts\src\app\models\select.viewModel.ts" />
+    <None Remove="Scripts\src\app\shared\Utils.ts" />
     <None Include="..\LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\src\app\shared\" />
     <Folder Include="Scripts\src\app\pages\" />
   </ItemGroup>
   <ItemGroup>
@@ -103,5 +105,11 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0-preview7.19365.7" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview7.19362.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\src\app\enums\LangType.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\select.viewModel.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\shared\utils.ts" />
   </ItemGroup>
 </Project>
