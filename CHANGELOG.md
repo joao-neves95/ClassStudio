@@ -4,7 +4,7 @@
 
   - Migrated from a vanilla JavaScript MVC frontend solution to Angular 8.
   - Added an update system. Currently launching during startup.
-  - Cleanup the code. Reduced the bin size from 126MB to 34MB.
+  - Cleanup the code.
 
 &nbsp;
 
