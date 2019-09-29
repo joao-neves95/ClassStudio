@@ -6,9 +6,7 @@
  *
  */
 
-using ClassStudio.UI.Enums;
 using ClassStudio.UI.Models;
-using ClassStudio.UI.Models.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
