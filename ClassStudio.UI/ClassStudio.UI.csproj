@@ -71,14 +71,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="Scripts-OLD\constants.ts" />
-    <None Remove="Scripts-OLD\Enums\LangEnum.ts" />
-    <None Remove="Scripts-OLD\Generator\generator.controller.ts" />
-    <None Remove="Scripts-OLD\Generator\generator.model.ts" />
-    <None Remove="Scripts-OLD\Generator\generator.services.ts" />
-    <None Remove="Scripts-OLD\Generator\generator.view.ts" />
-    <None Remove="Scripts-OLD\httpClient.ts" />
-    <None Remove="Scripts-OLD\main.ts" />
     <None Remove="Scripts\src\app\enums\LangType.ts" />
     <None Remove="Scripts\src\app\models\select.viewModel.ts" />
     <None Remove="Scripts\src\app\shared\Utils.ts" />
