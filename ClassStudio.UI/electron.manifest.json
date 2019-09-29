@@ -8,7 +8,7 @@
     "appId": "com.ClassStudio.app",
     "productName": "ClassStudio",
     "copyright": "Copyright © 2019 - João Neves (shivayl)",
-    "buildVersion": "0.2.0",
+    "buildVersion": "0.3.0",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
@@ -30,6 +30,6 @@
     ]
   },
   "settings": {
-    "githubVersionFileUrl": "https://raw.githubusercontent.com/joao-neves95/ClassStudio/next/VERSION.md"
+    "githubVersionFileUrl": "https://raw.githubusercontent.com/joao-neves95/ClassStudio/master/VERSION.md"
   }
 }
