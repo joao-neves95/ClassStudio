@@ -14,9 +14,9 @@
       "commandLineArgs": "start",
       "workingDirectory": ".",
       // TODO: REMOVE FOR PRODUCTION.
-      //"environmentVariables": {
-      //  "ASPNETCORE_ENVIRONMENT": "Development"
-      //}
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",

@@ -8,15 +8,15 @@ namespace Xml2CSharp
     {
         protected bool Equals(Class other)
         {
-            return string.Equals(XmlName, other.XmlName) &&  Fields.Matches(other.Fields);
+            return string.Equals( XmlName, other.XmlName ) && Fields.Matches( other.Fields );
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals( null, obj )) return false;
+            if (ReferenceEquals( this, obj )) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Class) obj);
+            return Equals( (Class)obj );
         }
 
         public override int GetHashCode()
@@ -31,12 +31,12 @@ namespace Xml2CSharp
 
         public bool IsRepeated(XElement element)
         {
-            return element.ElementsAfterSelf(Name).Any();
+            return element.ElementsAfterSelf( Name ).Any();
         }
 
         public override string ToString()
         {
-            return string.Format("Name: {0}, Fields: {1}, Namespace: {2}, XmlName: {3}", Name, Fields, Namespace, XmlName);
+            return string.Format( "Name: {0}, Fields: {1}, Namespace: {2}, XmlName: {3}", Name, Fields, Namespace, XmlName );
         }
     }
 
@@ -44,7 +44,7 @@ namespace Xml2CSharp
     {
         public static bool Matches(this IEnumerable<Field> input, IEnumerable<Field> other)
         {
-            return input.OrderBy(f => f.Name).SequenceEqual(other.OrderBy(f => f.Name));
+            return input.OrderBy( f => f.Name ).SequenceEqual( other.OrderBy( f => f.Name ) );
         }
     }
 }

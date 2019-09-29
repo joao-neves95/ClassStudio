@@ -9,7 +9,7 @@ namespace Xml2CSharp
         public static IEnumerable<Class> ExtractClassInfo(this XElement element)
         {
             var @classes = new HashSet<Class>();
-            ElementToClass(element, classes);
+            ElementToClass( element, classes );
             return @classes;
         }
 
@@ -24,14 +24,14 @@ namespace Xml2CSharp
             {
                 Name = xElement.Name.LocalName,
                 XmlName = xElement.Name.LocalName,
-                Fields =  ReplaceDuplicatesWithLists(ExtractFields(xElement, classes)).ToList(),
+                Fields = ReplaceDuplicatesWithLists( ExtractFields( xElement, classes ) ).ToList(),
                 Namespace = xElement.Name.NamespaceName
             };
 
-            SafeName(@class, @classes);
-            
-            if (xElement.Parent == null || (!@classes.Contains(@class) && @class.Fields.Any()))
-                @classes.Add(@class);
+            SafeName( @class, @classes );
+
+            if (xElement.Parent == null || (!@classes.Contains( @class ) && @class.Fields.Any()))
+                @classes.Add( @class );
 
             return @class;
 
@@ -41,7 +41,7 @@ namespace Xml2CSharp
         {
             foreach (var element in xElement.Elements().ToList())
             {
-                var tempClass = ElementToClass(element, classes);
+                var tempClass = ElementToClass( element, classes );
                 var type = element.IsEmpty() ? "String" : tempClass.Name;
 
                 yield return new Field
@@ -69,36 +69,36 @@ namespace Xml2CSharp
 
         private static IEnumerable<Field> ReplaceDuplicatesWithLists(IEnumerable<Field> fields)
         {
-            return fields.GroupBy(field => field.Name, field => field,
+            return fields.GroupBy( field => field.Name, field => field,
                 (key, g) =>
                     g.Count() > 1
                         ? new Field()
                         {
                             Name = key,
                             Namespace = g.First().Namespace,
-                            Type = string.Format("List<{0}>", g.First().Type),
+                            Type = string.Format( "List<{0}>", g.First().Type ),
                             XmlName = g.First().Type,
                             XmlType = XmlType.Element
-                        } : 
-                        g.First()).ToList();
+                        } :
+                        g.First() ).ToList();
         }
 
         private static void SafeName(Class @class, IEnumerable<Class> classes)
         {
-            var count = classes.Count(c => c.XmlName == @class.Name);
-            if (count > 0 && !@classes.Contains(@class))
+            var count = classes.Count( c => c.XmlName == @class.Name );
+            if (count > 0 && !@classes.Contains( @class ))
             {
-                @class.Name = StripBadCharacters(@class) + (count + 1);
+                @class.Name = StripBadCharacters( @class ) + (count + 1);
             }
             else
             {
-                @class.Name = StripBadCharacters(@class);
+                @class.Name = StripBadCharacters( @class );
             }
         }
 
         private static string StripBadCharacters(Class @class)
         {
-            return @class.Name.Replace("-", "");
+            return @class.Name.Replace( "-", "" );
         }
     }
 }

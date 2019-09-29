@@ -6,14 +6,14 @@
  *
  */
 
-using System;
-using Microsoft.AspNetCore.Mvc;
 using ClassStudio.Core.Generators;
 using ClassStudio.UI.Models.DTO;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace ClassStudio.UI.Controllers
 {
-    [Route("api/generator")]
+    [Route( "api/generator" )]
     [ApiController]
     public class GeneratorController : ControllerBase
     {
