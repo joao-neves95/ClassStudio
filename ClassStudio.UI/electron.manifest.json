@@ -28,5 +28,8 @@
       },
       "**/*"
     ]
+  },
+  "settings": {
+    "githubVersionFileUrl": "https://raw.githubusercontent.com/joao-neves95/ClassStudio/next/VERSION.md"
   }
 }

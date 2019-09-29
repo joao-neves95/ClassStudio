@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>João Neves (shivayl)</Authors>
     <Company>João Neves (shivayl)</Company>
@@ -45,31 +45,6 @@
     </ItemGroup>
   </Target>
   
-  
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Resources_FrontendIDs.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources_FrontendIDs.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Resources_Global.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources_Global.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Resources\Resources_FrontendIDs.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources_FrontendIDs.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Resources_Global.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources_Global.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  
   <ItemGroup>
     <None Remove="Scripts\src\app\enums\LangType.ts" />
     <None Remove="Scripts\src\app\models\select.viewModel.ts" />
@@ -104,4 +79,5 @@
     <TypeScriptCompile Include="Scripts\src\app\models\select.viewModel.ts" />
     <TypeScriptCompile Include="Scripts\src\app\shared\utils.ts" />
   </ItemGroup>
+  
 </Project>
