@@ -6,13 +6,9 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
+using ClassStudio.Core.Utils;
 using System.IO;
-using System.Text;
-using System.Linq;
 using Xml2CSharp;
-using System.Threading.Tasks;
 
 namespace ClassStudio.Core.Generators
 {
@@ -25,6 +21,7 @@ namespace ClassStudio.Core.Generators
             );
 
             StringWriter stringWriter = new StringWriter();
+            stringWriter = stringWriter.WriteClassStudioHeader();
             classInfoWriter.Write( stringWriter );
 
             return stringWriter.ToString();
