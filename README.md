@@ -8,4 +8,4 @@
 
 ## Download:
 
-https://sourceforge.net/projects/class-studio/files/
+https://sourceforge.net/projects/class-studio
