@@ -1,5 +1,7 @@
 # ClassStudio
 
+[![GitHub release](https://img.shields.io/github/release/joao-neves95/ClassStudio.svg)](https://github.com/joao-neves95/ClassStudio/releases/)
+[![LGPLv3 license](https://img.shields.io/badge/License-LGPLv3-blue.svg)](https://github.com/joao-neves95/ClassStudio/blob/master/LICENSE.md)
 
 ## Features:
 
