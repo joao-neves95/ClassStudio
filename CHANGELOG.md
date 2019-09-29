@@ -1,6 +1,6 @@
 # CHANGELOG
 
-#### *v0.3.0 - /09/2019
+#### *v0.3.0 - 29/09/2019
 
   - Migrated from a vanilla JavaScript MVC frontend solution to Angular 8.
   - Added an update system. Currently launching during startup.
