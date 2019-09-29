@@ -7,7 +7,7 @@ namespace Xml2CSharp
     {
         public IEnumerable<Class> Convert(string xml)
         {
-            var xElement = XElement.Parse(xml);
+            var xElement = XElement.Parse( xml );
 
             return xElement.ExtractClassInfo();
         }

@@ -6,14 +6,12 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using TypescriptSyntaxPaste;
 using ClassStudio.Core.Configuration;
+using ClassStudio.Core.Utils;
+using System;
+using System.IO;
+using System.Xml.Serialization;
+using CSharpToTypescript;
 
 namespace ClassStudio.Core.Generators
 {
@@ -31,7 +29,13 @@ namespace ClassStudio.Core.Generators
         public static string ToTypeScript(string typescriptInput)
         {
             CSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
-            return cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
+            string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
+
+            StringWriter stringWriter = new StringWriter();
+            stringWriter = stringWriter.WriteClassStudioHeader();
+            stringWriter.Write( compiledCode );
+
+            return stringWriter.ToString();
         }
 
         public static string ToJSON()
