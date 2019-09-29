@@ -2,7 +2,8 @@
 
 #### *v0.3.0 - //2019
 
-  | Migrated from a vanilla JavaScript MVC frontend solution to Angular 8.
+  - Migrated from a vanilla JavaScript MVC frontend solution to Angular 8.
+  - Cleanup. Reduced the bin size from 126MB to 34MB.
 
 &nbsp;
 
