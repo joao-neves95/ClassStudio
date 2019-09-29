@@ -6,15 +6,15 @@
  *
  */
 
-using System.Threading.Tasks;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
-using ElectronNET.API;
-using ElectronNET.API.Entities;
+using System.Threading.Tasks;
 
 namespace ClassStudio.UI
 {
@@ -91,7 +91,7 @@ namespace ClassStudio.UI
                     new BrowserWindowOptions()
                     {
                         Height = 900,
-                        Width = 1000,
+                        Width = 1150,
                         Center = true
                     } );
 
