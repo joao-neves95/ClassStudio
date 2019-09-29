@@ -25,59 +25,6 @@ namespace ClassStudio.UI.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            IndexViewModel indexViewModel = new IndexViewModel()
-            {
-                InputTypeSelector = new SelectViewModel()
-                {
-                    Id = "input-selector", // Resources.Resources_FrontendIDs.Generator_InputTypeSelector,
-                    Options = new List<OptionViewModel>()
-                    {
-                        new OptionViewModel()
-                        {
-                            Label = "XML",
-                            Value = ((int)LangEnum.XML).ToString()
-                        },
-                        new OptionViewModel()
-                        {
-                            Label = "C#",
-                            Value = ((int)LangEnum.CSharp).ToString()
-                        }
-                    }
-                },
-                OutputTypeSelector = new SelectViewModel()
-                {
-                    Id = "output-selector", // Resources.Resources_FrontendIDs.Generator_OutputTypeSelector,
-                    Options = new List<OptionViewModel>()
-                    {
-                        new OptionViewModel()
-                        {
-                            Label = "C#",
-                            Value = ((int)LangEnum.CSharp).ToString()
-                        },
-                        new OptionViewModel()
-                        {
-                            Label = "TypeScript",
-                            Value = ((int)LangEnum.TypeScript).ToString()
-                        },
-                    }
-                }
-            };
-
-            return View( indexViewModel );
-        }
-
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache( Duration = 0, Location = ResponseCacheLocation.None, NoStore = true )]
         public IActionResult Error()
         {
