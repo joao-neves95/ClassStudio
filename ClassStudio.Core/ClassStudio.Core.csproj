@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lib\TypescriptSyntaxPaste\TypescriptSyntaxPaste.csproj" />
+    <ProjectReference Include="..\Lib\CSharpToTypescript\CSharpToTypescript.csproj" />
     <ProjectReference Include="..\Lib\XmlToCSharp\Xml2CSharp\Xml2CSharp.csproj" />
   </ItemGroup>
 

@@ -7,8 +7,8 @@
  */
 
 using System;
-using TypescriptSyntaxPaste;
-using TypescriptSyntaxPaste.VSIX;
+using CSharpToTypescript;
+using CSharpToTypescript.VSIX;
 
 namespace ClassStudio.Core.Configuration
 {
