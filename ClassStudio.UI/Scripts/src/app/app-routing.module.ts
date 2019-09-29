@@ -14,6 +14,7 @@ import { AboutComponent } from 'src/app/pages/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/generator', pathMatch: 'full' },
+  { path: 'index', redirectTo: '/generator', pathMatch: 'full' },
   { path: 'generator', component: GeneratorComponent },
   { path: 'about', component: AboutComponent }
 ];
