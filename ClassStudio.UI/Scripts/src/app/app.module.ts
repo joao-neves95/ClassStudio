@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { GeneratorComponent } from './pages/generator/generator.component';
@@ -26,7 +27,8 @@ import { SelectComponent } from './shared/select/select.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

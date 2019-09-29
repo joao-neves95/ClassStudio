@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019 Joï¿½o Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
  * version 3, located in the root of this project, under the name "LICENSE.md".
@@ -8,8 +8,10 @@
 
 import { Component, OnInit } from '@angular/core';
 
+import { GeneratorService } from './generator.service';
+
+import { Utils } from 'src/app/shared/utils';
 import { SelectViewModel, OptionViewModel } from '../../models/select.viewModel';
-import { Utils } from 'src/app/shared/Utils';
 import { LangType } from '../../enums/LangType';
 
 @Component({
@@ -19,6 +21,8 @@ import { LangType } from '../../enums/LangType';
 })
 export class GeneratorComponent implements OnInit {
 
+  // #region PROPERTIES
+
   __inputSelectViewModel: SelectViewModel;
   __outputSelectViewModel: SelectViewModel;
 
@@ -26,7 +30,11 @@ export class GeneratorComponent implements OnInit {
   outputType: string;
   outputCode: string = '';
 
-  constructor() {
+  // #endregion PROPERTIES
+
+  // #region CONSTRUCTOR
+
+  constructor( private generatorService: GeneratorService) {
 
     this.__inputSelectViewModel = new SelectViewModel(
       [
@@ -39,14 +47,16 @@ export class GeneratorComponent implements OnInit {
 
     this.__outputSelectViewModel = new SelectViewModel(
       [
-        new OptionViewModel( 'C#', LangType.XML.toString() ),
-        new OptionViewModel( 'TypeScript', LangType.CSharp.toString() ),
+        new OptionViewModel( 'C#', LangType.CSharp.toString() ),
+        new OptionViewModel( 'TypeScript', LangType.TypeScript.toString() ),
       ]
     );
 
     this.outputType = this.__outputSelectViewModel.options[0].value;
 
   }
+
+  // #endregion CONSTRUCTOR
 
   ngOnInit() {
   }
@@ -56,32 +66,32 @@ export class GeneratorComponent implements OnInit {
    * @param selectType ( "input" | "output" )
    * @param inputType
    */
-  onSelect(selectType: string, value: string) {
+  onSelect( selectType: string, value: string ) {
     selectType = selectType.toUpperCase();
 
-    if (selectType === 'INPUT') {
+    if ( selectType === 'INPUT' ) {
       this.inputType = value;
 
-    } else if (selectType === "OUTPUT") {
+    } else if ( selectType === 'OUTPUT' ) {
       this.outputType = value;
 
     } else {
-      const exceptionMessage: string = "Unknown generator select type.";
+      const exceptionMessage: string = 'Unknown generator select type.';
       this.outputCode = exceptionMessage;
       throw new Error( exceptionMessage );
     }
 
-    this.outputCode = `[ GeneratorComponent.onSelect() -> value = ${value} ]`;
   }
 
   compile() {
-    const inputCode: string = (<HTMLInputElement>document.getElementById('input-code')).value;
+    const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
 
-    if (Utils.isNullOrEmpty(inputCode)) {
+    if ( Utils.isNullOrEmpty( inputCode ) ) {
       this.outputCode = '[ ERROR: NO INPUT GIVEN ]';
 
     } else {
-      this.outputCode = inputCode;
+      this.generatorService.compile( inputCode, parseInt( this.inputType ), parseInt( this.outputType ) )
+          .subscribe( output => { this.outputCode = output } );
     }
   }
 
