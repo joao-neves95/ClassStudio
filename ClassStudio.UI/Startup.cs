@@ -35,11 +35,20 @@ namespace ClassStudio.UI
             Configuration = configuration;
         }
 
+
+        #region PROPERTIES
+
         /// <summary>
         /// A dynamic representation of the JObject electron.manifest.json file.
         /// </summary>
         public static dynamic ElectronManifestJObj { get; private set; }
+        
         public static string CurrentAppVersion { get; private set; }
+
+        public static BrowserWindow MainWindow { get; private set; }
+
+        #endregion PROPERTIES
+
 
         #region CONFIGURATION
 
@@ -109,11 +118,11 @@ namespace ClassStudio.UI
             } );
 
             // Do not await.
-            _ = Task.Run( () =>
+            _ = Task.Run( async () =>
             {
                 Console.WriteLine( "Opening main window..." );
 
-                _ = Electron.WindowManager.CreateWindowAsync(
+                Startup.MainWindow = await Electron.WindowManager.CreateWindowAsync(
                     new BrowserWindowOptions()
                     {
                         Height = 900,
