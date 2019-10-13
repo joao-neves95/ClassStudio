@@ -89,7 +89,6 @@
     <TypeScriptCompile Include="Scripts\src\app\models\button.viewModel.ts" />
     <TypeScriptCompile Include="Scripts\src\app\models\DTO\generatorDTO.ts" />
     <TypeScriptCompile Include="Scripts\src\app\models\select.viewModel.ts" />
-    <TypeScriptCompile Include="Scripts\src\app\models\selectDirectoryDTO.ts" />
     <TypeScriptCompile Include="Scripts\src\app\shared\utils.ts" />
   </ItemGroup>
   
