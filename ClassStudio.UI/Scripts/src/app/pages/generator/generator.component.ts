@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Jo�o Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
  * version 3, located in the root of this project, under the name "LICENSE.md".
@@ -8,11 +8,15 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { GeneratorService } from './generator.service';
+import { GeneratorService } from '../../services/generator.service';
+import { ElectronService } from '../../services/electron.service';
 
 import { Utils } from 'src/app/shared/utils';
 import { SelectViewModel, OptionViewModel } from '../../models/select.viewModel';
+import { ButtonViewModel } from '../../models/button.viewModel';
 import { LangType } from '../../enums/LangType';
+import { InOutSourceType } from '../../enums/InOutSourceType';
+import { SelectTypeConstants } from '../../enums/SelectTypeConstants';
 
 @Component({
   selector: 'app-generator',
@@ -24,17 +28,26 @@ export class GeneratorComponent implements OnInit {
   // #region PROPERTIES
 
   __inputSelectViewModel: SelectViewModel;
+  __inputSourceSelectViewModel: SelectViewModel;
+  __inputSourceButtonViewModel: ButtonViewModel;
   __outputSelectViewModel: SelectViewModel;
+  __outputSourceSelectViewModel: SelectViewModel;
 
   inputType: string;
+  inputSourceType: string;
+  inputSource: string[] = [];
   outputType: string;
+  outputSourceType: string;
+  outputSource: string[] = [];
   outputCode: string = '';
+
+  get InOutSourceEnum() { return InOutSourceType; }
 
   // #endregion PROPERTIES
 
   // #region CONSTRUCTOR
 
-  constructor( private generatorService: GeneratorService) {
+  constructor( private generatorService: GeneratorService, private electronService: ElectronService ) {
 
     this.__inputSelectViewModel = new SelectViewModel(
       [
@@ -42,8 +55,21 @@ export class GeneratorComponent implements OnInit {
         new OptionViewModel( 'C#', LangType.CSharp.toString() ),
       ]
     );
-
     this.inputType = this.__inputSelectViewModel.options[0].value;
+
+    this.__inputSourceSelectViewModel = new SelectViewModel(
+      [
+        new OptionViewModel( 'Text', InOutSourceType.Text.toString() ),
+        new OptionViewModel( 'File', InOutSourceType.Files.toString() ),
+        new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
+      ]
+    )
+    this.inputSourceType = this.__inputSourceSelectViewModel.options[0].value;
+
+    this.__inputSourceButtonViewModel = new ButtonViewModel('Select', (e: Event) => {
+      e.preventDefault();
+      return this.selectFiles();
+    })
 
     this.__outputSelectViewModel = new SelectViewModel(
       [
@@ -51,8 +77,15 @@ export class GeneratorComponent implements OnInit {
         new OptionViewModel( 'TypeScript', LangType.TypeScript.toString() ),
       ]
     );
-
     this.outputType = this.__outputSelectViewModel.options[0].value;
+
+    this.__outputSourceSelectViewModel = new SelectViewModel(
+      [
+        new OptionViewModel( 'Text', InOutSourceType.Text.toString() ),
+        new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
+      ]
+    )
+    this.outputSourceType = this.__inputSourceSelectViewModel.options[0].value;
 
   }
 
@@ -69,11 +102,17 @@ export class GeneratorComponent implements OnInit {
   onSelect( selectType: string, value: string ) {
     selectType = selectType.toUpperCase();
 
-    if ( selectType === 'INPUT' ) {
+    if ( selectType === SelectTypeConstants.InputCode ) {
       this.inputType = value;
 
-    } else if ( selectType === 'OUTPUT' ) {
+    } else if ( selectType === SelectTypeConstants.OutputCode ) {
       this.outputType = value;
+
+    } else if ( selectType === SelectTypeConstants.InputSource ) {
+      this.inputSourceType = value;
+
+    } else if ( selectType === SelectTypeConstants.OutputSource ) {
+      this.outputSourceType = value;
 
     } else {
       const exceptionMessage: string = 'Unknown generator select type.';
@@ -83,16 +122,40 @@ export class GeneratorComponent implements OnInit {
 
   }
 
+  selectFiles() {
+
+    if ( this.inputSourceType === this.InOutSourceEnum.Files.toString() ) {
+      this.electronService.selectFiles().subscribe( files  => { this.inputSource = files; } );
+
+    } else if (this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
+      this.electronService.selectDirectory().subscribe( files  => { this.inputSource = files; } );
+    }
+
+  }
+
   compile() {
-    const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
 
-    if ( Utils.isNullOrEmpty( inputCode ) ) {
-      this.outputCode = '[ ERROR: NO INPUT GIVEN ]';
+    if (this.inputSourceType === this.InOutSourceEnum.Text.toString()) {
+      const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
 
-    } else {
+      if ( Utils.isNullOrEmpty( inputCode ) ) {
+        this.outputCode = '[ ERROR: NO INPUT GIVEN ]';
+      }
+
       this.generatorService.compile( inputCode, parseInt( this.inputType ), parseInt( this.outputType ) )
           .subscribe( output => { this.outputCode = output } );
+
+    } else if (this.inputSourceType === this.InOutSourceEnum.Files.toString() || this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
+
+      this.generatorService.compileFiles(
+        this.inputSource,
+        this.inputSourceType === this.InOutSourceEnum.Files.toString(),
+        parseInt( this.inputType ), parseInt( this.outputType )
+      )
+      .subscribe( output => { this.outputCode = output } );
+
     }
+
   }
 
 }

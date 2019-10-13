@@ -11,12 +11,25 @@
 <section>
   <h3>Input</h3>
 
-  <app-select
-    [selectViewModel]="__inputSelectViewModel"
-    (selected)="onSelect('input', $event)">
-  </app-select>
+  <div>
+    <app-select
+      [selectViewModel]="__inputSourceSelectViewModel"
+      (selected)="onSelect('INPUT-SOURCE-TYPE', $event)">
+    </app-select>
+    <app-select
+      [selectViewModel]="__inputSelectViewModel"
+      (selected)="onSelect('INPUT-CODE-TYPE', $event)">
+    </app-select>
+  </div>
 
-  <textarea id="input-code" class="uk-textarea" required></textarea>
+  <textarea id="input-code" class="uk-textarea" required
+            *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
+  </textarea>
+  <app-button class="file-selector"
+    [buttonViewModel]="__inputSourceButtonViewModel"
+    *ngIf=" inputSourceType === InOutSourceEnum.Files.toString() || inputSourceType === InOutSourceEnum.Directory.toString() ">
+  </app-button>
+
   <button class="uk-button uk-button-default"
           (click)="compile()">
     Complile
@@ -27,10 +40,17 @@
 <section>
   <h3>Output</h3>
 
+  <!-- <app-select
+    [selectViewModel]="__outputSourceSelectViewModel"
+    (selected)="onSelect('OUTPUT-SOURCE-TYPE', $event)">
+  </app-select> -->
   <app-select
     [selectViewModel]="__outputSelectViewModel"
-    (selected)="onSelect('output', $event)">
+    (selected)="onSelect('OUTPUT-CODE-TYPE', $event)">
   </app-select>
 
-  <textarea class="uk-textarea" readonly> {{ outputCode }} </textarea>
+  <textarea class="uk-textarea" readonly>
+    {{ outputCode }}
+  </textarea>
+
 </section>
