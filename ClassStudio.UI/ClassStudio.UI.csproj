@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>João Neves (shivayl)</Authors>
     <Company>João Neves (shivayl)</Company>
@@ -46,8 +46,14 @@
   </Target>
   
   <ItemGroup>
+    <None Remove="Scripts\src\app\constants.ts" />
+    <None Remove="Scripts\src\app\enums\inOutSourceType.ts" />
     <None Remove="Scripts\src\app\enums\LangType.ts" />
+    <None Remove="Scripts\src\app\enums\SelectTypeConstants.ts" />
+    <None Remove="Scripts\src\app\models\button.viewModel.ts" />
+    <None Remove="Scripts\src\app\models\DTO\generatorDTO.ts" />
     <None Remove="Scripts\src\app\models\select.viewModel.ts" />
+    <None Remove="Scripts\src\app\models\selectDirectoryDTO.ts" />
     <None Remove="Scripts\src\app\shared\Utils.ts" />
     <None Include="..\LICENSE.md">
       <Pack>True</Pack>
@@ -55,6 +61,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\src\app\services\" />
     <Folder Include="Scripts\src\app\pages\" />
   </ItemGroup>
   <ItemGroup>
@@ -69,13 +76,18 @@
   
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="5.22.14" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0-preview7.19365.7" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0-preview7.19362.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview7-19378-04" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
   
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\src\app\constants.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\enums\InOutSourceType.ts" />
     <TypeScriptCompile Include="Scripts\src\app\enums\LangType.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\enums\SelectTypeConstants.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\button.viewModel.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\DTO\generatorDTO.ts" />
     <TypeScriptCompile Include="Scripts\src\app\models\select.viewModel.ts" />
     <TypeScriptCompile Include="Scripts\src\app\shared\utils.ts" />
   </ItemGroup>

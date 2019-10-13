@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using CSharpToTypescript;
+using System.Threading.Tasks;
 
 namespace ClassStudio.Core.Generators
 {
@@ -20,20 +21,31 @@ namespace ClassStudio.Core.Generators
         public static string ToXML<T>(T classInput)
         {
             XmlSerializer xmlSerializer = new XmlSerializer( typeof( T ) );
-            StringWriter stringWriter = new StringWriter();
+            using StringWriter stringWriter = new StringWriter();
             xmlSerializer.Serialize( stringWriter, classInput );
 
             return stringWriter.ToString();
         }
 
-        public static string ToTypeScript(string typescriptInput)
+        public static async Task<string> ToTypeScript(string[] typescriptInputs)
+        {
+            using StringWriter allContent = new StringWriter();
+
+            for (int i = 0; i < typescriptInputs.Length; ++i)
+            {
+                await allContent.WriteLineAsync( await CSharp.ToTypeScript( typescriptInputs[i] ) );
+            }
+
+            return allContent.ToString();
+        }
+
+        public static async Task<string> ToTypeScript(string typescriptInput)
         {
             CSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
             string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
 
-            StringWriter stringWriter = new StringWriter();
-            stringWriter = stringWriter.WriteClassStudioHeader();
-            stringWriter.Write( compiledCode );
+            using StringWriter stringWriter = new StringWriter().WriteClassStudioHeader();
+            await stringWriter.WriteLineAsync( compiledCode );
 
             return stringWriter.ToString();
         }

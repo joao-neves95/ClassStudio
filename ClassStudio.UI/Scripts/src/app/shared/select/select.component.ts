@@ -20,7 +20,7 @@ export class SelectComponent implements OnInit {
   @Input() selectViewModel: SelectViewModel = new SelectViewModel( [] );
   @Output() selected = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }

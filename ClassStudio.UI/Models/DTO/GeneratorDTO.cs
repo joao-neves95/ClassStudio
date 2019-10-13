@@ -6,13 +6,21 @@
  *
  */
 
-using System.ComponentModel.DataAnnotations;
+using ClassStudio.UI.Enums;
 
 namespace ClassStudio.UI.Models.DTO
 {
     public class GeneratorDTO
     {
-        [Required]
         public string Input { get; set; }
+
+        /// <summary>
+        /// LangEnum
+        /// </summary>
+        public sbyte InputType { get; set; }
+
+        public bool InputAreFiles { get; set; }
+
+        public string[] InputSourceFiles { get; set; }
     }
 }

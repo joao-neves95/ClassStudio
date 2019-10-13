@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// TODO: Add async write.
+// TODO: Add a flag to whether or not print the xml Annotations
+
+using System.Collections.Generic;
 using System.IO;
 
 namespace Xml2CSharp

@@ -10,6 +10,9 @@ using ClassStudio.Core.Generators;
 using ClassStudio.UI.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using ClassStudio.Core.Utils;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -19,11 +22,18 @@ namespace ClassStudio.UI.Controllers
     {
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
-        public string XMLStringToCSharp([FromBody]GeneratorDTO dto)
+        public async Task<string> XMLStringToCSharp([FromBody]GeneratorDTO dto)
         {
             try
             {
-                return XML.ToCSharp( dto.Input );
+                if (dto.Input != null)
+                {
+                    return XML.ToCSharp( dto.Input );
+                }
+                else
+                {
+                    return await XML.ToCSharp( await this.GetInputFromFilesAsync( dto ) );
+                }
             }
             catch (Exception e)
             {
@@ -33,15 +43,37 @@ namespace ClassStudio.UI.Controllers
 
         [HttpPost]
         [Route( "CSharpToTypescript" )]
-        public string CSharpToTypescript([FromBody]GeneratorDTO dto)
+        public async Task<string> CSharpToTypescript([FromBody]GeneratorDTO dto)
         {
             try
             {
-                return CSharp.ToTypeScript( dto.Input );
+                if (dto.Input != null)
+                {
+                    return await CSharp.ToTypeScript( dto.Input );
+                }
+                else
+                {
+                    return await CSharp.ToTypeScript( await this.GetInputFromFilesAsync( dto ) );
+                }
             }
             catch (Exception e)
             {
                 return $"{e.Message} \n{e.StackTrace}";
+            }
+        }
+
+        private async Task<string[]> GetInputFromFilesAsync(GeneratorDTO generatorDTO)
+        {
+            if (!generatorDTO.InputAreFiles)
+            {
+                return await Readers.ReadFileAsync( Readers.ReadDirectory(
+                    generatorDTO.InputSourceFiles,
+                    Parsers.ParseInputTypeExtension( generatorDTO.InputType )
+                ) );
+            }
+            else
+            {
+                return await Readers.ReadFileAsync( generatorDTO.InputSourceFiles );
             }
         }
     }

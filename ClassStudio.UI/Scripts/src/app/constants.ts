@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
@@ -6,16 +6,10 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ClassStudio.UI.Enums
-{
-    public enum UpdateMessageBoxResult
-    {
-        Download = 0,
-        Skip = 1
+export const Constants = Object.freeze({
+    ErrorMessages: {
+        WrongInput: '[ INVALID INPUT ]',
+        NotImplemented: '[ NOT IMPLEMENTED ]'
     }
-}
+});
