@@ -20,8 +20,7 @@ namespace ClassStudio.Core.Generators
                 new Xml2CSharpConverer().Convert( xml )
             );
 
-            StringWriter stringWriter = new StringWriter();
-            stringWriter = stringWriter.WriteClassStudioHeader();
+            using StringWriter stringWriter = new StringWriter().WriteClassStudioHeader();
             classInfoWriter.Write( stringWriter );
 
             return stringWriter.ToString();

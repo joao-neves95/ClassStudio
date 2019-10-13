@@ -20,7 +20,7 @@ namespace ClassStudio.Core.Generators
         public static string ToXML<T>(T classInput)
         {
             XmlSerializer xmlSerializer = new XmlSerializer( typeof( T ) );
-            StringWriter stringWriter = new StringWriter();
+            using StringWriter stringWriter = new StringWriter();
             xmlSerializer.Serialize( stringWriter, classInput );
 
             return stringWriter.ToString();
@@ -31,8 +31,7 @@ namespace ClassStudio.Core.Generators
             CSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
             string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
 
-            StringWriter stringWriter = new StringWriter();
-            stringWriter = stringWriter.WriteClassStudioHeader();
+            using StringWriter stringWriter = new StringWriter().WriteClassStudioHeader();
             stringWriter.Write( compiledCode );
 
             return stringWriter.ToString();
