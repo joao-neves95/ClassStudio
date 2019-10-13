@@ -19,4 +19,8 @@ export class Utils {
     return value === null || value === undefined;
   }
 
+  public static isNullOrEmptyArr( value: any[] | null | undefined ) {
+    return value === null || value === undefined || value.length <= 0;
+  }
+
 }
