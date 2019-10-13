@@ -8,16 +8,29 @@
 
 using ClassStudio.Core.Utils;
 using System.IO;
+using System.Threading.Tasks;
 using Xml2CSharp;
 
 namespace ClassStudio.Core.Generators
 {
     public static class XML
     {
-        public static string ToCSharp(string xml)
+        public static async Task<string> ToCSharp(string[] xmlInputs)
+        {
+            using StringWriter allContents = new StringWriter();
+
+            for (int i = 0; i < xmlInputs.Length; ++i)
+            {
+                await allContents.WriteLineAsync( XML.ToCSharp( xmlInputs[i] ) );
+            }
+
+            return allContents.ToString();
+        }
+
+        public static string ToCSharp(string xmlInput)
         {
             ClassInfoWriter classInfoWriter = new ClassInfoWriter(
-                new Xml2CSharpConverer().Convert( xml )
+                new Xml2CSharpConverer().Convert( xmlInput )
             );
 
             using StringWriter stringWriter = new StringWriter().WriteClassStudioHeader();
