@@ -6,25 +6,24 @@
  *
  */
 
-using ClassStudio.UI.Enums;
-using ClassStudio.UI.Models;
-using ElectronNET.API;
-using ElectronNET.API.Entities;
+using System;
+using System.IO;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
+using ClassStudio.UI.Enums;
+using ClassStudio.UI.Models;
+using ClassStudio.UI.Middleware;
 
 namespace ClassStudio.UI
 {
@@ -131,62 +130,7 @@ namespace ClassStudio.UI
                     } );
             } );
 
-            // TODO: (REFACTORING) Make this a middleware.
-            // Do not await.
-            _ = Task.Run( async () =>
-            {
-                Console.WriteLine( "Checking for Updates..." );
-                Electron.Notification.Show( new NotificationOptions( "ClassStudio", "Checking for Updates..." ) );
-
-                CheckUpdateResponse updateCheck = await UpdateService._.CheckForUpdates();
-
-
-                if (updateCheck.Success && updateCheck.UpdateAvailable)
-                {
-                    Uri updateUri = new Uri( $"https://sourceforge.net/projects/class-studio/files/ClassStudio Setup {updateCheck.NewAvailableVersion}.exe/download" );
-                    string _title = $"ClassStudio update available";
-                    string _body = $"v{updateCheck.CurrentVersion} -> v{updateCheck.NewAvailableVersion}\nUpdate link: {updateUri}";
-
-                    MessageBoxOptions messageBoxOptions = new MessageBoxOptions( _body )
-                    {
-                        Type = MessageBoxType.info,
-                        Title = _title,
-                        Buttons = new string[] { "Open Link", "Skip Update" },
-                    };
-
-                    MessageBoxResult messageBoxResult = await Electron.Dialog.ShowMessageBoxAsync( messageBoxOptions );
-
-                    if (messageBoxResult.Response == (int)UpdateMessageBoxResult.Download)
-                    {
-                        if (RuntimeInformation.IsOSPlatform( OSPlatform.Windows ))
-                        {
-                            Process.Start( new ProcessStartInfo( "cmd", $"/c start {Uri.EscapeUriString( updateUri.ToString().Replace( "&", "^&" ) )}" ) { CreateNoWindow = true } );
-                        }
-                        else if (RuntimeInformation.IsOSPlatform( OSPlatform.Linux ))
-                        {
-                            Process.Start( "xdg-open", updateUri.ToString() );
-                        }
-                        else if (RuntimeInformation.IsOSPlatform( OSPlatform.OSX ))
-                        {
-                            Process.Start( "open", updateUri.ToString() );
-                        }
-                    }
-                }
-                else if (updateCheck.Success && !updateCheck.UpdateAvailable)
-                {
-                    Electron.Notification.Show( new NotificationOptions( "ClassStudio", "No updates available." ) );
-                }
-                else if (!updateCheck.Success && env.IsDevelopment())
-                {
-                    Electron.Notification.Show( new NotificationOptions( "ClassStudio", JsonConvert.SerializeObject( updateCheck ) ) );
-                    Console.WriteLine( "ClassStudio update result" );
-                    Console.WriteLine( JsonConvert.SerializeObject( updateCheck ) );
-                }
-                else
-                {
-                    Electron.Notification.Show( new NotificationOptions( "ClassStudio", "An error occured during update." ) );
-                }
-            } );
+            app.CheckForUpdates();
         }
 
         #endregion CONFIGURE
