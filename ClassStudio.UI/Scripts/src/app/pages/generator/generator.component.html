@@ -22,6 +22,16 @@
     </app-select>
   </div>
 
+  <div class="source-files"
+       *ngIf=" this.inputSource.length > 0 ">
+    <!-- INPUT SOURCE FILES -->
+    <ul>
+      <li *ngFor=" let sourceFile of this.inputSource ">
+        {{ sourceFile }}
+      </li>
+    </ul>
+  </div>
+
   <textarea id="input-code" class="uk-textarea" required
             *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
   </textarea>
