@@ -22,13 +22,15 @@ export class GeneratorDTO {
    * @param inputAreFiles Whether if the input are files or directories.
    * @param inputSourceFiles The input file paths.
    */
-  constructor( input: string | null, inputAreFiles: boolean = false, inputSourceFiles: string[] = [] ) {
+  constructor( input: string | null, inputType: number = -1, inputAreFiles: boolean = false, inputSourceFiles: string[] = [] ) {
     this.Input = input;
+    this.InputType = inputType;
     this.InputAreFiles = inputAreFiles;
     this.InputSourceFiles = inputSourceFiles;
   }
 
   public Input: string | null;
+  public InputType: number | null;
   public InputAreFiles: boolean;
   public InputSourceFiles: string[];
 }

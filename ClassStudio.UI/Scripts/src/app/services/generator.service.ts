@@ -56,7 +56,7 @@ export class GeneratorService {
       return of( Constants.ErrorMessages.WrongInput );
     }
 
-    return this.postInputToServer( new GeneratorDTO( null, inputAreFiles, inputFiles ), inputType, outputType );
+    return this.postInputToServer( new GeneratorDTO( null, inputType as number, inputAreFiles, inputFiles ), inputType, outputType );
   }
 
   // #endregion PUBLIC METHODS
@@ -69,7 +69,7 @@ export class GeneratorService {
       return of( Constants.ErrorMessages.WrongInput );
     }
 
-    const endpoint: string = this.getEndpoint( inputType as number, outputType as number );
+    const endpoint: string = this.parseEndpoint( inputType as number, outputType as number );
 
     if (endpoint === '')  {
       return of( Constants.ErrorMessages.NotImplemented );
@@ -82,7 +82,7 @@ export class GeneratorService {
 
   // #region PRIVATE HELPER METHODS
 
-  private getEndpoint( inputType: number, outputType: number ): string {
+  private parseEndpoint( inputType: number, outputType: number ): string {
 
     if ( inputType == LangType.XML && outputType == LangType.CSharp ) {
       return 'XMLStringToCSharp';
