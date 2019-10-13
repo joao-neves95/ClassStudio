@@ -23,7 +23,14 @@ namespace ClassStudio.UI.Controllers
         {
             try
             {
-                return XML.ToCSharp( dto.Input );
+                if (dto.Input != null)
+                {
+                    return XML.ToCSharp( dto.Input );
+                }
+                else
+                {
+                    return "[ NOT IMPLEMENTED ]";
+                }
             }
             catch (Exception e)
             {
@@ -37,12 +44,24 @@ namespace ClassStudio.UI.Controllers
         {
             try
             {
-                return CSharp.ToTypeScript( dto.Input );
+                if (dto.Input != null)
+                {
+                    return CSharp.ToTypeScript( dto.Input );
+                }
+                else
+                {
+                    return "[ NOT IMPLEMENTED ]";
+                }
             }
             catch (Exception e)
             {
                 return $"{e.Message} \n{e.StackTrace}";
             }
+        }
+
+        private void GetInputFromFiles(GeneratorDTO generatorDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }
