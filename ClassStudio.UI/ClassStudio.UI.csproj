@@ -46,8 +46,14 @@
   </Target>
   
   <ItemGroup>
+    <None Remove="Scripts\src\app\constants.ts" />
+    <None Remove="Scripts\src\app\enums\inOutSourceType.ts" />
     <None Remove="Scripts\src\app\enums\LangType.ts" />
+    <None Remove="Scripts\src\app\enums\SelectTypeConstants.ts" />
+    <None Remove="Scripts\src\app\models\button.viewModel.ts" />
+    <None Remove="Scripts\src\app\models\DTO\generatorDTO.ts" />
     <None Remove="Scripts\src\app\models\select.viewModel.ts" />
+    <None Remove="Scripts\src\app\models\selectDirectoryDTO.ts" />
     <None Remove="Scripts\src\app\shared\Utils.ts" />
     <None Include="..\LICENSE.md">
       <Pack>True</Pack>
@@ -55,6 +61,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\src\app\services\" />
     <Folder Include="Scripts\src\app\pages\" />
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +82,14 @@
   </ItemGroup>
   
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\src\app\constants.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\enums\InOutSourceType.ts" />
     <TypeScriptCompile Include="Scripts\src\app\enums\LangType.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\enums\SelectTypeConstants.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\button.viewModel.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\DTO\generatorDTO.ts" />
     <TypeScriptCompile Include="Scripts\src\app\models\select.viewModel.ts" />
+    <TypeScriptCompile Include="Scripts\src\app\models\selectDirectoryDTO.ts" />
     <TypeScriptCompile Include="Scripts\src\app\shared\utils.ts" />
   </ItemGroup>
   

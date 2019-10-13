@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { GeneratorComponent } from './pages/generator/generator.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SelectComponent } from './shared/select/select.component';
+import { ButtonComponent } from './shared/button/button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SelectComponent } from './shared/select/select.component';
     HeaderComponent,
     GeneratorComponent,
     AboutComponent,
-    SelectComponent
+    SelectComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
