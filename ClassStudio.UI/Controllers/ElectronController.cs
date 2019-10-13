@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ *
+ * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
+ * version 3, located in the root of this project, under the name "LICENSE.md".
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,26 +22,41 @@ namespace ClassStudio.UI.Controllers
     [ApiController]
     public class ElectronController : ControllerBase
     {
-        public async Task<string[]> SelectDirectory(SelectDirectoryDTO selectDirectoryDTO)
+        [HttpPost]
+        [Route( "SelectDirectory" )]
+        public async Task<string[]> SelectDirectory([FromBody] SelectDirectoryDTO selectDirectoryDTO)
         {
-            OpenDialogOptions options = new OpenDialogOptions
+            try
             {
-                Properties = new OpenDialogProperty[1]
-            };
+                OpenDialogOptions options = new OpenDialogOptions
+                {
+                    Properties = new OpenDialogProperty[2]
+                };
 
-            if (selectDirectoryDTO.SelectDirectory)
-            {
-                options.Properties[0] = OpenDialogProperty.openDirectory;
+                if (selectDirectoryDTO.SelectDirectory)
+                {
+                    options.Properties[0] = OpenDialogProperty.openDirectory;
+                }
+                else if (selectDirectoryDTO.SelectFiles)
+                {
+                    options.Properties[0] = OpenDialogProperty.openFile;
+                }
+
+                options.Properties[1] = OpenDialogProperty.multiSelections;
+
+                return await Electron.Dialog.ShowOpenDialogAsync( Startup.MainWindow, options );
             }
-            else if (selectDirectoryDTO.SelectFile)
+            catch (Exception e)
             {
-                options.Properties[0] = OpenDialogProperty.openFile;
+                Console.WriteLine( e.Message );
+                Console.WriteLine( e.StackTrace );
             }
 
-            return await Electron.Dialog.ShowOpenDialogAsync( Startup.MainWindow, options );
+            return new string[] { };
         }
 
-        public async void SaveFiles(SaveFilesDTO saveFilesDTO)
+        [HttpPost]
+        public async void SaveFiles([FromBody] SaveFilesDTO saveFilesDTO)
         {
             throw new NotImplementedException();
         }
