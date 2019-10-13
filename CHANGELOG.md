@@ -1,6 +1,18 @@
 # CHANGELOG
 
-#### *v0.3.0 - 29/09/2019
+&nbsp;
+
+#### *v0.4.0 - 13/10/2019
+
+  - Added support for having files and directories as input, instead of only code.
+  - Solved multiple memory leaks.
+  - Small fix on the Generator header whitespace.
+  - Updated everything to the release version of .NET Core 3.
+  - Multiple small internal refactorings.
+
+&nbsp;
+
+#### v0.3.0 - 29/09/2019
 
   - Migrated from a vanilla JavaScript MVC frontend solution to Angular 8.
   - Added an update system. Currently launching during startup.
