@@ -116,8 +116,7 @@ namespace ClassStudio.UI
                 Electron.App.SetAppUserModelId( Startup.ElectronManifestJObj.build.appId.Value );
             } );
 
-            // Do not await.
-            _ = Task.Run( async () =>
+            await Task.Run( async () =>
             {
                 Console.WriteLine( "Opening main window..." );
 
@@ -128,6 +127,8 @@ namespace ClassStudio.UI
                         Width = 1150,
                         Center = true
                     } );
+
+                await Startup.MainWindow.WebContents.Session.ClearCacheAsync();
             } );
 
             app.CheckForUpdates();

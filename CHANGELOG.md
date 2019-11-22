@@ -2,7 +2,14 @@
 
 &nbsp;
 
-#### *v0.4.0 - 13/10/2019
+#### *v0.4.1 - 22/11/2019
+
+  - Fixed a bug that caused issues with the installer. When the user updated ClassStudio it continued
+    with the previous cached version.
+
+&nbsp;
+
+#### v0.4.0 - 13/10/2019
 
   - Added support for having files and directories as input, instead of only code.
   - Solved multiple memory leaks.
