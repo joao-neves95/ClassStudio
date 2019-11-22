@@ -2,7 +2,7 @@
 
 &nbsp;
 
-#### *v0.4.1 - /11/2019
+#### *v0.4.1 - 22/11/2019
 
   - Fixed a bug that caused issues with the installer. When the user updated ClassStudio it continued
     with the previous cached version.
