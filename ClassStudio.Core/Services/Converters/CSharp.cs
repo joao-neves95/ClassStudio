@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
@@ -6,19 +6,23 @@
  *
  */
 
-using ClassStudio.Core.Configuration;
-using ClassStudio.Core.Utils;
 using System;
 using System.IO;
-using System.Xml.Serialization;
-using CSharpToTypescript;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace ClassStudio.Core.Generators
+using CSharpToTypescript;
+using CSharpToTypescript.Contract;
+
+using ClassStudio.Core.Interfaces;
+using ClassStudio.Core.Configuration;
+using ClassStudio.Core.Utils;
+
+namespace ClassStudio.Core.Services.Converters
 {
-    public static class CSharp
+    public class CSharp : ICSharpConverter
     {
-        public static string ToXML<T>(T classInput)
+        public string ToXML<T>(T classInput)
         {
             XmlSerializer xmlSerializer = new XmlSerializer( typeof( T ) );
             using StringWriter stringWriter = new StringWriter();
@@ -27,27 +31,38 @@ namespace ClassStudio.Core.Generators
             return stringWriter.ToString();
         }
 
-        public static async Task<string> ToTypeScript(string[] typescriptInputs)
+        public async Task<string> ToTypeScript(string[] typescriptInputs)
         {
             using StringWriter allContent = new StringWriter();
+            allContent.WriteClassStudioHeader();
 
             for (int i = 0; i < typescriptInputs.Length; ++i)
             {
-                await allContent.WriteLineAsync( await CSharp.ToTypeScript( typescriptInputs[i] ) );
+                await allContent.WriteLineAsync( await this.ToTypeScript( typescriptInputs[i], false ) );
             }
 
             return allContent.ToString();
         }
 
-        public static async Task<string> ToTypeScript(string typescriptInput)
+        public async Task<string> ToTypeScript(string typescriptInput, bool writeGeneratorHeader = true)
         {
+            string result = string.Empty;
+
             CSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
             string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
 
-            using StringWriter stringWriter = new StringWriter().WriteClassStudioHeader();
-            await stringWriter.WriteLineAsync( compiledCode );
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                if (writeGeneratorHeader)
+                {
+                    stringWriter.WriteClassStudioHeader();
+                }
 
-            return stringWriter.ToString();
+                await stringWriter.WriteLineAsync( compiledCode );
+                result = stringWriter.ToString();
+            }
+
+            return result;
         }
 
         public static string ToJSON()
