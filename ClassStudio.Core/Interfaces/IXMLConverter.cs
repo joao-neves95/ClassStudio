@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
@@ -7,6 +7,7 @@
  */
 
 
+using System.IO;
 using System.Threading.Tasks;
 
 namespace ClassStudio.Core.Interfaces
@@ -15,6 +16,6 @@ namespace ClassStudio.Core.Interfaces
     {
         Task<string> ToCSharp(string[] xmlInputs);
 
-        string ToCSharp(string xmlInput, bool writeGeneratorHeader = true);
+        string ToCSharp(string xmlInput, bool writeGeneratorHeader = true, StringWriter stringWriter = null);
     }
 }

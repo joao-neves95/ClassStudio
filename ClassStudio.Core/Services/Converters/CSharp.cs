@@ -38,28 +38,36 @@ namespace ClassStudio.Core.Services.Converters
 
             for (int i = 0; i < typescriptInputs.Length; ++i)
             {
-                await allContent.WriteLineAsync( await this.ToTypeScript( typescriptInputs[i], false ) );
+                await allContent.WriteLineAsync( await this.ToTypeScript( typescriptInputs[i], false, allContent ) );
             }
 
             return allContent.ToString();
         }
 
-        public async Task<string> ToTypeScript(string typescriptInput, bool writeGeneratorHeader = true)
+        public async Task<string> ToTypeScript(string typescriptInput, bool writeGeneratorHeader = true, StringWriter stringWriter = null)
         {
-            string result = string.Empty;
-
-            CSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
+            ICSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
             string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
 
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                if (writeGeneratorHeader)
-                {
-                    stringWriter.WriteClassStudioHeader();
-                }
+            bool dispose = true;
 
-                await stringWriter.WriteLineAsync( compiledCode );
-                result = stringWriter.ToString();
+            if (stringWriter == null)
+            {
+                stringWriter = new StringWriter();
+                dispose = false;
+            }
+
+            if (writeGeneratorHeader)
+            {
+                stringWriter.WriteClassStudioHeader();
+            }
+
+            await stringWriter.WriteLineAsync( compiledCode );
+            string result = stringWriter.ToString();
+
+            if (dispose)
+            {
+                await stringWriter.DisposeAsync();
             }
 
             return result;

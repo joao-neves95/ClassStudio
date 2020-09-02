@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
@@ -32,23 +32,31 @@ namespace ClassStudio.Core.Services.Converters
             return allContents.ToString();
         }
 
-        public string ToCSharp(string xmlInput, bool writeGeneratorHeader = true)
+        public string ToCSharp(string xmlInput, bool writeGeneratorHeader = true, StringWriter stringWriter = null)
         {
-            string result = string.Empty;
-
             ClassInfoWriter classInfoWriter = new ClassInfoWriter(
                 new Xml2CSharpConverer().Convert( xmlInput )
             );
 
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                if (writeGeneratorHeader)
-                {
-                    stringWriter.WriteClassStudioHeader();
-                }
+            bool dispose = true;
 
-                classInfoWriter.Write( stringWriter );
-                result = stringWriter.ToString();
+            if (stringWriter == null)
+            {
+                stringWriter = new StringWriter();
+                dispose = false;
+            }
+
+            if (writeGeneratorHeader)
+            {
+                stringWriter.WriteClassStudioHeader();
+            }
+
+            classInfoWriter.Write( stringWriter );
+            string result = stringWriter.ToString();
+
+            if (dispose)
+            {
+                stringWriter.Dispose();
             }
 
             return result;
