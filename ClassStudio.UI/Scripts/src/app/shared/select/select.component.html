@@ -1,28 +1,27 @@
-
 <!--
  *
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
 -->
 
 <div uk-form-custom="target: > * > span:first-child">
 
-  <select (change)="onSelect($event.target.value)">
+    <select (change)="onSelect($event.target.value)">
 
-    <option *ngFor="let option of selectViewModel.options"
-            value="{{ option.value }}">
+        <option *ngFor="let option of selectViewModel.options"
+                value="{{ option.value }}">
 
-      {{ option.label }}
-    </option>
+            {{ option.label }}
+        </option>
 
-  </select>
+    </select>
 
-  <button class="uk-button uk-button-default" type="button" tabindex="-1">
-    <span></span>
-    <span uk-icon="icon: chevron-down"></span>
-  </button>
+    <button class="uk-button uk-button-default" type="button" tabindex="-1">
+        <span></span>
+        <span uk-icon="icon: chevron-down"></span>
+    </button>
 
 </div>
