@@ -27,6 +27,7 @@ namespace ClassStudio.Core.Services.Converters
             for (int i = 0; i < xmlInputs.Length; ++i)
             {
                 await allContents.WriteLineAsync( this.ToCSharp( xmlInputs[i], false ) );
+                await allContents.WriteLineAsync( "\n" );
             }
 
             return allContents.ToString();
@@ -38,12 +39,12 @@ namespace ClassStudio.Core.Services.Converters
                 new Xml2CSharpConverer().Convert( xmlInput )
             );
 
-            bool dispose = true;
+            bool dispose = false;
 
             if (stringWriter == null)
             {
                 stringWriter = new StringWriter();
-                dispose = false;
+                dispose = true;
             }
 
             if (writeGeneratorHeader)

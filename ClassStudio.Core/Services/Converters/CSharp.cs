@@ -38,7 +38,8 @@ namespace ClassStudio.Core.Services.Converters
 
             for (int i = 0; i < typescriptInputs.Length; ++i)
             {
-                await allContent.WriteLineAsync( await this.ToTypeScript( typescriptInputs[i], false, allContent ) );
+                await this.ToTypeScript( typescriptInputs[i], false, allContent );
+                await allContent.WriteLineAsync();
             }
 
             return allContent.ToString();
@@ -49,12 +50,12 @@ namespace ClassStudio.Core.Services.Converters
             ICSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
             string compiledCode = cSharpToTypescriptConverter.ConvertToTypescript( typescriptInput, new TSGeneratorSettings() );
 
-            bool dispose = true;
+            bool dispose = false;
 
             if (stringWriter == null)
             {
                 stringWriter = new StringWriter();
-                dispose = false;
+                dispose = true;
             }
 
             if (writeGeneratorHeader)
