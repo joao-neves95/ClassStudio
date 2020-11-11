@@ -2,9 +2,11 @@
 
 &nbsp;
 
-#### *v0.4.2 - //2020
+#### *v0.5.0 - 11/11/2020
 
-  - Multiple internal refactorings and improvements.
+  - (UI) Added the ability to remove selected files. 
+  - (Backend) Multiple internal refactorings and improvements.
+  - (Global) Updated multiple dependencies.
 
 &nbsp;
 
