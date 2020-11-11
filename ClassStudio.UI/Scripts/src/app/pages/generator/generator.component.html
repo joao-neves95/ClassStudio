@@ -20,18 +20,22 @@
     </div>
 
     <div class="source-files"
-         *ngIf=" this.inputSource.length > 0 ">
+         *ngIf=" this.inputSourcePaths.length > 0 ">
+
         <!-- INPUT SOURCE FILES -->
-        <ul>
-            <li *ngFor=" let sourceFile of this.inputSource ">
-                {{ sourceFile }}
+        <ul class="uk-list">
+            <li *ngFor=" let sourceFilePath of this.inputSourcePaths; let i = index ">
+
+              {{ sourceFilePath }}
+
+              <button uk-close type="button" (click)="removeFile(i)"></button>
             </li>
         </ul>
     </div>
 
     <textarea id="input-code" class="uk-textarea" required
               *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
-  </textarea>
+   </textarea>
     <app-button class="file-selector"
                 [buttonViewModel]="__inputSourceButtonViewModel"
                 *ngIf=" inputSourceType === InOutSourceEnum.Files.toString() || inputSourceType === InOutSourceEnum.Directory.toString() ">
