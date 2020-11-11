@@ -1,28 +1,27 @@
 /*
- * Copyright (c) 2019 Jo�o Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
  */
 
 using System;
 using System.IO;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
+
 using Newtonsoft.Json.Linq;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
-using ClassStudio.UI.Enums;
-using ClassStudio.UI.Models;
+
+using ClassStudio.Core.Interfaces;
+using ClassStudio.Core.Services.Converters;
 using ClassStudio.UI.Middleware;
 
 namespace ClassStudio.UI
@@ -41,7 +40,7 @@ namespace ClassStudio.UI
         /// A dynamic representation of the JObject electron.manifest.json file.
         /// </summary>
         public static dynamic ElectronManifestJObj { get; private set; }
-        
+
         public static string CurrentAppVersion { get; private set; }
 
         public static BrowserWindow MainWindow { get; private set; }
@@ -60,6 +59,9 @@ namespace ClassStudio.UI
                     .AddJsonOptions( options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true );
 
             services.AddSpaStaticFiles( configuration => configuration.RootPath = "Scripts/dist/class-studio" );
+
+            services.AddScoped<ICSharpConverter, CSharp>();
+            services.AddScoped<IXMLConverter, XML>();
         }
 
         #endregion CONFIGURATION
@@ -82,11 +84,12 @@ namespace ClassStudio.UI
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthorization();
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints( endpoints =>
             {
@@ -129,6 +132,9 @@ namespace ClassStudio.UI
                     } );
 
                 await Startup.MainWindow.WebContents.Session.ClearCacheAsync();
+
+                //Startup.MainWindow.SetTitle( Configuration["WindowTitle"] );
+                //Startup.MainWindow.OnReadyToShow += () => Startup.MainWindow.Show();
             } );
 
             app.CheckForUpdates();

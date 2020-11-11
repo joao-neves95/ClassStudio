@@ -2,9 +2,18 @@
 
 &nbsp;
 
-#### *v0.4.1 - 22/11/2019
+#### *v0.5.0 - 11/11/2020
 
-  - Fixed a bug that caused issues with the installer. When the user updated ClassStudio it continued
+  - (UI) Added the ability to remove selected files. 
+  - (Backend) Multiple internal refactorings and improvements.
+  - (Global) Updated multiple dependencies.
+
+&nbsp;
+
+#### v0.4.1 - 22/11/2019
+
+  - Fixed a bug that caused issues with the installer.\
+    When the user updated ClassStudio it continued
     with the previous cached version.
 
 &nbsp;

@@ -1,14 +1,16 @@
 /*
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019-2020 JoÃ£o Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
  */
 
 using ElectronNET.API;
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace ClassStudio.UI
 {
@@ -23,6 +25,8 @@ namespace ClassStudio.UI
             Host.CreateDefaultBuilder( args )
                 .ConfigureWebHostDefaults( webBuilder =>
                 {
+                    webBuilder.ConfigureLogging( (webHostBuilderContext, loggingBuilder) => loggingBuilder.AddConsole() );
+                    webBuilder.UseKestrel();
                     webBuilder.UseElectron( args );
                     webBuilder.UseStartup<Startup>();
                 } );

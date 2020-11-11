@@ -1,18 +1,18 @@
-﻿/*
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+/*
+ * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
  */
 
-using ClassStudio.Core.Generators;
-using ClassStudio.UI.Models.DTO;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using ClassStudio.Core.Utils;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+using ClassStudio.Core.Interfaces;
+using ClassStudio.Core.Utils;
+using ClassStudio.UI.Models.DTO;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -20,19 +20,29 @@ namespace ClassStudio.UI.Controllers
     [ApiController]
     public class GeneratorController : ControllerBase
     {
+        public GeneratorController(ICSharpConverter cSharpConverter, IXMLConverter xMLConverter)
+        {
+            this._CSharpConverter = cSharpConverter;
+            this._XMLConverter = xMLConverter;
+        }
+
+        private ICSharpConverter _CSharpConverter { get; set; }
+
+        private IXMLConverter _XMLConverter { get; set; }
+
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
-        public async Task<string> XMLStringToCSharp([FromBody]GeneratorDTO dto)
+        public async Task<string> XMLStringToCSharp([FromBody] GeneratorDTO dto)
         {
             try
             {
                 if (dto.Input != null)
                 {
-                    return XML.ToCSharp( dto.Input );
+                    return this._XMLConverter.ToCSharp( dto.Input );
                 }
                 else
                 {
-                    return await XML.ToCSharp( await this.GetInputFromFilesAsync( dto ) );
+                    return await this._XMLConverter.ToCSharp( await this.GetInputFromFilesAsync( dto ) );
                 }
             }
             catch (Exception e)
@@ -43,17 +53,17 @@ namespace ClassStudio.UI.Controllers
 
         [HttpPost]
         [Route( "CSharpToTypescript" )]
-        public async Task<string> CSharpToTypescript([FromBody]GeneratorDTO dto)
+        public async Task<string> CSharpToTypescript([FromBody] GeneratorDTO dto)
         {
             try
             {
                 if (dto.Input != null)
                 {
-                    return await CSharp.ToTypeScript( dto.Input );
+                    return await this._CSharpConverter.ToTypeScript( dto.Input );
                 }
                 else
                 {
-                    return await CSharp.ToTypeScript( await this.GetInputFromFilesAsync( dto ) );
+                    return await this._CSharpConverter.ToTypeScript( await this.GetInputFromFilesAsync( dto ) );
                 }
             }
             catch (Exception e)

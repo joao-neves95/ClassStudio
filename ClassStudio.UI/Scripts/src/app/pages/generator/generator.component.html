@@ -1,65 +1,65 @@
-
 <!--
  *
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
 -->
 
 <section>
-  <h3>Input</h3>
+    <h3>Input</h3>
 
-  <div>
-    <app-select
-      [selectViewModel]="__inputSourceSelectViewModel"
-      (selected)="onSelect('INPUT-SOURCE-TYPE', $event)">
-    </app-select>
-    <app-select
-      [selectViewModel]="__inputSelectViewModel"
-      (selected)="onSelect('INPUT-CODE-TYPE', $event)">
-    </app-select>
-  </div>
+    <div>
+        <app-select [selectViewModel]="__inputSourceSelectViewModel"
+                    (selected)="onSelect('INPUT-SOURCE-TYPE', $event)">
+        </app-select>
+        <app-select [selectViewModel]="__inputSelectViewModel"
+                    (selected)="onSelect('INPUT-CODE-TYPE', $event)">
+        </app-select>
+    </div>
 
-  <div class="source-files"
-       *ngIf=" this.inputSource.length > 0 ">
-    <!-- INPUT SOURCE FILES -->
-    <ul>
-      <li *ngFor=" let sourceFile of this.inputSource ">
-        {{ sourceFile }}
-      </li>
-    </ul>
-  </div>
+    <div class="source-files"
+         *ngIf=" this.inputSourcePaths.length > 0 ">
 
-  <textarea id="input-code" class="uk-textarea" required
-            *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
-  </textarea>
-  <app-button class="file-selector"
-    [buttonViewModel]="__inputSourceButtonViewModel"
-    *ngIf=" inputSourceType === InOutSourceEnum.Files.toString() || inputSourceType === InOutSourceEnum.Directory.toString() ">
-  </app-button>
+        <!-- INPUT SOURCE FILES -->
+        <ul class="uk-list">
+            <li *ngFor=" let sourceFilePath of this.inputSourcePaths; let i = index ">
 
-  <button class="uk-button uk-button-default"
-          (click)="compile()">
-    Complile
-  </button>
+              {{ sourceFilePath }}
+
+              <button uk-close type="button" (click)="removeFile(i)"></button>
+            </li>
+        </ul>
+    </div>
+
+    <textarea id="input-code" class="uk-textarea" required
+              *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
+   </textarea>
+    <app-button class="file-selector"
+                [buttonViewModel]="__inputSourceButtonViewModel"
+                *ngIf=" inputSourceType === InOutSourceEnum.Files.toString() || inputSourceType === InOutSourceEnum.Directory.toString() ">
+    </app-button>
+
+    <button class="uk-button uk-button-default"
+            (click)="compile()">
+        Complile
+    </button>
 
 </section>
 
 <section>
-  <h3>Output</h3>
+    <h3>Output</h3>
 
-  <!-- <app-select
-    [selectViewModel]="__outputSourceSelectViewModel"
-    (selected)="onSelect('OUTPUT-SOURCE-TYPE', $event)">
-  </app-select> -->
-  <app-select
-    [selectViewModel]="__outputSelectViewModel"
-    (selected)="onSelect('OUTPUT-CODE-TYPE', $event)">
-  </app-select>
+    <!-- <app-select
+      [selectViewModel]="__outputSourceSelectViewModel"
+      (selected)="onSelect('OUTPUT-SOURCE-TYPE', $event)">
+    </app-select> -->
+    <app-select [selectViewModel]="__outputSelectViewModel"
+                (selected)="onSelect('OUTPUT-CODE-TYPE', $event)">
+    </app-select>
 
-  <textarea class="uk-textarea" readonly>
+    <textarea class="uk-textarea" readonly>
     {{ outputCode }}
   </textarea>
 

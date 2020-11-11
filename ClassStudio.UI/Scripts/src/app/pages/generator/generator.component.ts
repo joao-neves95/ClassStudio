@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019 João Pedro Martins Neves (shivayl) - All Rights Reserved.
+ * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
- * ClassStudio is licensed under the GNU Lesser General Public License (LGPL),
- * version 3, located in the root of this project, under the name "LICENSE.md".
+ * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
+ * located in the root of this project, under the name "LICENSE.md".
  *
  */
 
@@ -35,7 +35,7 @@ export class GeneratorComponent implements OnInit {
 
   inputType: string;
   inputSourceType: string;
-  inputSource: string[] = [];
+  inputSourcePaths: string[] = [];
   outputType: string;
   outputSourceType: string;
   outputSource: string[] = [];
@@ -97,7 +97,7 @@ export class GeneratorComponent implements OnInit {
   /**
    *
    * @param selectType ( "input" | "output" )
-   * @param inputType
+   * @param value
    */
   onSelect( selectType: string, value: string ) {
     selectType = selectType.toUpperCase();
@@ -122,19 +122,21 @@ export class GeneratorComponent implements OnInit {
 
   }
 
-  selectFiles() {
+  removeFile(index: number) {
+    this.inputSourcePaths.splice(index, 1);
+  }
 
+  selectFiles() {
     if ( this.inputSourceType === this.InOutSourceEnum.Files.toString() ) {
-      this.electronService.selectFiles().subscribe( files  => { this.inputSource = files; } );
+      this.electronService.selectFiles().subscribe( files  => { this.inputSourcePaths = files; } );
 
     } else if (this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
-      this.electronService.selectDirectory().subscribe( files  => { this.inputSource = files; } );
+      this.electronService.selectDirectory().subscribe( files  => { this.inputSourcePaths = files; } );
     }
 
   }
 
   compile() {
-
     if (this.inputSourceType === this.InOutSourceEnum.Text.toString()) {
       const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
 
@@ -145,17 +147,18 @@ export class GeneratorComponent implements OnInit {
       this.generatorService.compile( inputCode, parseInt( this.inputType ), parseInt( this.outputType ) )
           .subscribe( output => { this.outputCode = output } );
 
-    } else if (this.inputSourceType === this.InOutSourceEnum.Files.toString() || this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
-
-      this.generatorService.compileFiles(
-        this.inputSource,
-        this.inputSourceType === this.InOutSourceEnum.Files.toString(),
-        parseInt( this.inputType ), parseInt( this.outputType )
-      )
-      .subscribe( output => { this.outputCode = output } );
-
+    } else if (this.inputSourceType === this.InOutSourceEnum.Files.toString()
+              ||
+              this.inputSourceType === this.InOutSourceEnum.Directory.toString()
+    ) {
+      this.generatorService
+          .compileFiles(
+            this.inputSourcePaths,
+            this.inputSourceType === this.InOutSourceEnum.Files.toString(),
+            parseInt( this.inputType ), parseInt( this.outputType )
+          )
+          .subscribe( output => { this.outputCode = output } );
     }
-
   }
 
 }
