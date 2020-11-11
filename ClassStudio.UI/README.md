@@ -17,7 +17,7 @@ electronize start /watch
 ### Build
 
 ```
-electronize build /target win
+electronize build /target win /PublishReadyToRun false
 
 electronize build /target osx
 
