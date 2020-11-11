@@ -132,6 +132,9 @@ namespace ClassStudio.UI
                     } );
 
                 await Startup.MainWindow.WebContents.Session.ClearCacheAsync();
+
+                //Startup.MainWindow.SetTitle( Configuration["WindowTitle"] );
+                //Startup.MainWindow.OnReadyToShow += () => Startup.MainWindow.Show();
             } );
 
             app.CheckForUpdates();
