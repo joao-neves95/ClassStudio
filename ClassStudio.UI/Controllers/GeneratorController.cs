@@ -14,7 +14,6 @@ using ClassStudio.Core.Enums;
 using ClassStudio.Core.Interfaces;
 using ClassStudio.Core.Models.DTO;
 using ClassStudio.Core.Utils;
-using ClassStudio.UI.Models.DTO;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -22,15 +21,12 @@ namespace ClassStudio.UI.Controllers
     [ApiController]
     public class GeneratorController : ControllerBase
     {
-        public GeneratorController(ICSharpConverter cSharpConverter, IXMLConverter xMLConverter)
+        private readonly IConverterService _ConverterService;
+
+        public GeneratorController(IConverterService converterService)
         {
-            this._CSharpConverter = cSharpConverter;
-            this._XMLConverter = xMLConverter;
+            this._ConverterService = converterService;
         }
-
-        private ICSharpConverter _CSharpConverter { get; set; }
-
-        private IXMLConverter _XMLConverter { get; set; }
 
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
@@ -40,11 +36,11 @@ namespace ClassStudio.UI.Controllers
             {
                 if (dto.Input != null)
                 {
-                    return this._XMLConverter.ToCSharp( dto.Input );
+                    return await this._ConverterService.ConvertAsync( ConverterType.XMLToCSharp, dto.Input );
                 }
                 else
                 {
-                    return await this._XMLConverter.ToCSharp( await this.GetInputFromFilesAsync( dto ) );
+                    return await this._ConverterService.ConvertAsync( ConverterType.XMLToCSharp, await this.GetInputFromFilesAsync( dto ) );
                 }
             }
             catch (Exception e)
@@ -61,11 +57,32 @@ namespace ClassStudio.UI.Controllers
             {
                 if (dto.Input != null)
                 {
-                    return await this._CSharpConverter.ToTypeScript( dto.Input );
+                    return await this._ConverterService.ConvertAsync( ConverterType.CSharpToTypescript, dto.Input );
                 }
                 else
                 {
-                    return await this._CSharpConverter.ToTypeScript( await this.GetInputFromFilesAsync( dto ) );
+                    return await this._ConverterService.ConvertAsync( ConverterType.CSharpToTypescript, await this.GetInputFromFilesAsync( dto ) );
+                }
+            }
+            catch (Exception e)
+            {
+                return $"{e.Message} \n{e.StackTrace}";
+            }
+        }
+
+        [HttpPost]
+        [Route( "JsonToCSharp" )]
+        public async Task<string> JsonToCSharp([FromBody] GeneratorDTO dto)
+        {
+            try
+            {
+                if (dto.Input != null)
+                {
+                    return await this._ConverterService.ConvertAsync( ConverterType.JsonToCSharp, dto.Input );
+                }
+                else
+                {
+                    return await this._ConverterService.ConvertAsync( ConverterType.JsonToCSharp, await this.GetInputFromFilesAsync( dto ) );
                 }
             }
             catch (Exception e)

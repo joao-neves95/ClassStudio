@@ -84,11 +84,14 @@ export class GeneratorService {
 
   private parseEndpoint( inputType: number, outputType: number ): string {
 
-    if ( inputType == LangType.XML && outputType == LangType.CSharp ) {
+    if ( inputType === LangType.XML && outputType === LangType.CSharp ) {
       return 'XMLStringToCSharp';
 
-    } else if ( inputType == LangType.CSharp && outputType == LangType.TypeScript ) {
+    } else if ( inputType === LangType.CSharp && outputType === LangType.TypeScript ) {
       return 'CSharpToTypescript';
+
+    } else if ( inputType === LangType.JSON && outputType === LangType.CSharp ) {
+      return 'JsonToCSharp';
 
     } else {
       return '';

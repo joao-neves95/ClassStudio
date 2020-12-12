@@ -6,20 +6,21 @@
  *
  */
 
+using System.IO;
+using System.Threading.Tasks;
+
 using CSharpToTypescript;
-using CSharpToTypescript.Contract;
 
 using ClassStudio.Core.Interfaces;
 using ClassStudio.Core.Configuration;
 
 namespace ClassStudio.Core.Services.Converters
 {
-    public class CSharpToTypescript : IConverter<string>
+    public class CSharpToTypescript : IConverter
     {
-        public string Convert(string input)
+        public async Task ConvertAsync(string input, StringWriter stringWriter)
         {
-            ICSharpToTypescriptConverter cSharpToTypescriptConverter = new CSharpToTypescriptConverter();
-            return cSharpToTypescriptConverter.ConvertToTypescript( input, new TSGeneratorSettings() );
+            await stringWriter.WriteLineAsync( new CSharpToTypescriptConverter().ConvertToTypescript( input, new TSGeneratorSettings() ) );
         }
     }
 }

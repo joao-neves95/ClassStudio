@@ -6,21 +6,24 @@
  *
  */
 
-using ClassStudio.Core.Interfaces;
+using System.IO;
+using System.Threading.Tasks;
 
 using Xml2CSharp;
 
+using ClassStudio.Core.Interfaces;
+
 namespace ClassStudio.Core.Services.Converters
 {
-    public class XMLToCSharp : IConverter<string>
+    public class XMLToCSharp : IConverter
     {
-        public string Convert(string input)
+        public async Task ConvertAsync(string input, StringWriter stringWriter)
         {
             ClassInfoWriter classInfoWriter = new ClassInfoWriter(
                 new Xml2CSharpConverer().Convert( input )
             );
 
-            return classInfoWriter.ToString();
+            classInfoWriter.Write( stringWriter );
         }
     }
 }

@@ -11,37 +11,29 @@ using System.Threading.Tasks;
 
 using ClassStudio.Core.Enums;
 using ClassStudio.Core.Interfaces;
+using ClassStudio.Core.Services.Converters;
 using ClassStudio.Core.Utils;
 
 namespace ClassStudio.Core.Services
 {
-    public class ConverterService<TInput> : IConverterService<TInput>
+    public class ConverterService : IConverterService
     {
-        private readonly IConverter<TInput> _Converter;
-
-        public ConverterService(IConverter<TInput> converter)
-        {
-            this._Converter = converter;
-        }
-
-        public async Task<string> Convert(TInput[] input)
+        public async Task<string> ConvertAsync(ConverterType converterType, string[] input)
         {
             using StringWriter allContent = new StringWriter();
             allContent.WriteClassStudioHeader();
 
             for (int i = 0; i < input.Length; ++i)
             {
-                await this.Convert( input[i], false, allContent );
+                await this.ConvertAsync( converterType, input[i], false, allContent );
                 await allContent.WriteLineAsync();
             }
 
             return allContent.ToString();
         }
 
-        public async Task<string> Convert(TInput input, bool writeGeneratorHeader = true, StringWriter stringWriter = null)
+        public async Task<string> ConvertAsync(ConverterType converterType, string input, bool writeGeneratorHeader = true, StringWriter stringWriter = null)
         {
-            string result = this._Converter.Convert( input );
-
             bool dispose = false;
 
             if (stringWriter == null)
@@ -55,8 +47,9 @@ namespace ClassStudio.Core.Services
                 stringWriter.WriteClassStudioHeader();
             }
 
-            await stringWriter.WriteLineAsync( result );
-            result = stringWriter.ToString();
+            await ConverterFactory.Get( converterType ).ConvertAsync( input, stringWriter );
+
+            string result = stringWriter.ToString();
 
             if (dispose)
             {

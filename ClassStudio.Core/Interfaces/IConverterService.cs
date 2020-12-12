@@ -9,12 +9,14 @@
 using System.IO;
 using System.Threading.Tasks;
 
+using ClassStudio.Core.Enums;
+
 namespace ClassStudio.Core.Interfaces
 {
-    public interface IConverterService<TInput>
+    public interface IConverterService
     {
-        public Task<string> Convert(TInput[] input);
+        public Task<string> ConvertAsync(ConverterType converterType, string[] input);
 
-        public Task<string> Convert(TInput input, bool writeGeneratorHeader = true, StringWriter stringWriter = null);
+        public Task<string> ConvertAsync(ConverterType converterType, string input, bool writeGeneratorHeader = true, StringWriter stringWriter = null);
     }
 }

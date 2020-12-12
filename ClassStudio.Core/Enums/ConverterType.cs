@@ -6,13 +6,12 @@
  *
  */
 
-using System.IO;
-using System.Threading.Tasks;
-
-namespace ClassStudio.Core.Interfaces
+namespace ClassStudio.Core.Enums
 {
-    public interface IConverter
+    public enum ConverterType
     {
-        public Task ConvertAsync(string input, StringWriter stringWriter);
+        CSharpToTypescript,
+        XMLToCSharp,
+        JsonToCSharp
     }
 }
