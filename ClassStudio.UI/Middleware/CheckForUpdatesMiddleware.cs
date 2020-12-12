@@ -7,18 +7,19 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+
 using Newtonsoft.Json;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
+
 using ClassStudio.UI.Enums;
-using ClassStudio.UI.Models;
+using ClassStudio.Core.Models;
+using ClassStudio.Core.Enums;
 
 namespace ClassStudio.UI.Middleware
 {
@@ -43,7 +44,6 @@ namespace ClassStudio.UI.Middleware
 
                     // TODO: Add a timeout task cancelation token.
                     CheckUpdateResponse updateCheck = await UpdateService._.CheckForUpdates();
-
 
                     if (updateCheck.Success && updateCheck.UpdateAvailable)
                     {

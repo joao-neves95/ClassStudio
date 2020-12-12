@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
@@ -6,13 +6,13 @@
  *
  */
 
-using ClassStudio.UI.Models;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using System.Collections.Generic;
-using System.Diagnostics;
+using ClassStudio.Core.Models;
 
 namespace ClassStudio.UI.Controllers
 {

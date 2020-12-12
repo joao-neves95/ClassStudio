@@ -16,9 +16,9 @@ import { Constants } from '../constants';
 import { Utils } from '../shared/utils';
 import { LangType } from '../enums/LangType';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class GeneratorService {
 
   // #region PROPERTIES
@@ -26,7 +26,7 @@ export class GeneratorService {
   private readonly baseGeneratorUrl: string = 'api/generator/';
 
   private httpOptions = {
-    headers: new HttpHeaders({
+    headers: new HttpHeaders( {
       'Content-Type': 'application/json;charset=UTF-8',
       'Accept': 'application/json, text/plain'
     } )
@@ -63,7 +63,7 @@ export class GeneratorService {
 
   // #region PRIVATE METHODS
 
-  private postInputToServer( dto: GeneratorDTO, inputType: number | null | undefined, outputType: number | null | undefined  ): Observable<string> {
+  private postInputToServer( dto: GeneratorDTO, inputType: number | null | undefined, outputType: number | null | undefined ): Observable<string> {
 
     if ( Utils.isNullNmbr( inputType ) || Utils.isNullNmbr( outputType ) ) {
       return of( Constants.ErrorMessages.WrongInput );
@@ -71,7 +71,7 @@ export class GeneratorService {
 
     const endpoint: string = this.parseEndpoint( inputType as number, outputType as number );
 
-    if (endpoint === '')  {
+    if ( endpoint === '' ) {
       return of( Constants.ErrorMessages.NotImplemented );
     }
 
@@ -84,11 +84,14 @@ export class GeneratorService {
 
   private parseEndpoint( inputType: number, outputType: number ): string {
 
-    if ( inputType == LangType.XML && outputType == LangType.CSharp ) {
+    if ( inputType === LangType.XML && outputType === LangType.CSharp ) {
       return 'XMLStringToCSharp';
 
-    } else if ( inputType == LangType.CSharp && outputType == LangType.TypeScript ) {
+    } else if ( inputType === LangType.CSharp && outputType === LangType.TypeScript ) {
       return 'CSharpToTypescript';
+
+    } else if ( inputType === LangType.JSON && outputType === LangType.CSharp ) {
+      return 'JsonToCSharp';
 
     } else {
       return '';

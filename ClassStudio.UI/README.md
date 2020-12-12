@@ -9,9 +9,9 @@
 ### Start Dev
 
 ```
-electronize start
+electronize start /PublishReadyToRun false
 
-electronize start /watch
+electronize start /PublishReadyToRun false /watch
 ```
 
 ### Build

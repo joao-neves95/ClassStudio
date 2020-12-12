@@ -21,7 +21,7 @@ using ElectronNET.API;
 using ElectronNET.API.Entities;
 
 using ClassStudio.Core.Interfaces;
-using ClassStudio.Core.Services.Converters;
+using ClassStudio.Core.Services;
 using ClassStudio.UI.Middleware;
 
 namespace ClassStudio.UI
@@ -60,8 +60,7 @@ namespace ClassStudio.UI
 
             services.AddSpaStaticFiles( configuration => configuration.RootPath = "Scripts/dist/class-studio" );
 
-            services.AddScoped<ICSharpConverter, CSharp>();
-            services.AddScoped<IXMLConverter, XML>();
+            services.AddSingleton<IConverterService, ConverterService>();
         }
 
         #endregion CONFIGURATION

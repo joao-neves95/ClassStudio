@@ -6,6 +6,7 @@
 ## Features:
 
 - Compile code from XML into C# classes
+- Compile code from JSON into C# classes
 - Compile code from C# classes into TypeScript
 
 ## Download:

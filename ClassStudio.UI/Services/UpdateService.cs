@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
@@ -6,14 +6,12 @@
  *
  */
 
-using ClassStudio.Core.Services;
-using ClassStudio.UI.Models;
-
-using ElectronNET.API.Entities;
-
 using System;
 using System.IO;
 using System.Threading.Tasks;
+
+using ClassStudio.Core.Models;
+using ClassStudio.Core.Services;
 
 namespace ClassStudio.UI
 {

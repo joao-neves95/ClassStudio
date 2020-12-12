@@ -18,11 +18,11 @@ import { LangType } from '../../enums/LangType';
 import { InOutSourceType } from '../../enums/InOutSourceType';
 import { SelectTypeConstants } from '../../enums/SelectTypeConstants';
 
-@Component({
+@Component( {
   selector: 'app-generator',
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.scss']
-})
+} )
 export class GeneratorComponent implements OnInit {
 
   // #region PROPERTIES
@@ -52,6 +52,7 @@ export class GeneratorComponent implements OnInit {
     this.__inputSelectViewModel = new SelectViewModel(
       [
         new OptionViewModel( 'XML', LangType.XML.toString() ),
+        new OptionViewModel( 'JSON', LangType.JSON.toString() ),
         new OptionViewModel( 'C#', LangType.CSharp.toString() ),
       ]
     );
@@ -63,13 +64,13 @@ export class GeneratorComponent implements OnInit {
         new OptionViewModel( 'File', InOutSourceType.Files.toString() ),
         new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
       ]
-    )
+    );
     this.inputSourceType = this.__inputSourceSelectViewModel.options[0].value;
 
-    this.__inputSourceButtonViewModel = new ButtonViewModel('Select', (e: Event) => {
+    this.__inputSourceButtonViewModel = new ButtonViewModel( 'Select', ( e: Event ) => {
       e.preventDefault();
       return this.selectFiles();
-    })
+    } );
 
     this.__outputSelectViewModel = new SelectViewModel(
       [
@@ -84,7 +85,7 @@ export class GeneratorComponent implements OnInit {
         new OptionViewModel( 'Text', InOutSourceType.Text.toString() ),
         new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
       ]
-    )
+    );
     this.outputSourceType = this.__inputSourceSelectViewModel.options[0].value;
 
   }
@@ -122,22 +123,22 @@ export class GeneratorComponent implements OnInit {
 
   }
 
-  removeFile(index: number) {
-    this.inputSourcePaths.splice(index, 1);
+  removeFile( index: number ) {
+    this.inputSourcePaths.splice( index, 1 );
   }
 
   selectFiles() {
     if ( this.inputSourceType === this.InOutSourceEnum.Files.toString() ) {
-      this.electronService.selectFiles().subscribe( files  => { this.inputSourcePaths = files; } );
+      this.electronService.selectFiles().subscribe( files => { this.inputSourcePaths = files; } );
 
-    } else if (this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
-      this.electronService.selectDirectory().subscribe( files  => { this.inputSourcePaths = files; } );
+    } else if ( this.inputSourceType === this.InOutSourceEnum.Directory.toString() ) {
+      this.electronService.selectDirectory().subscribe( files => { this.inputSourcePaths = files; } );
     }
 
   }
 
   compile() {
-    if (this.inputSourceType === this.InOutSourceEnum.Text.toString()) {
+    if ( this.inputSourceType === this.InOutSourceEnum.Text.toString() ) {
       const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
 
       if ( Utils.isNullOrEmpty( inputCode ) ) {
@@ -145,19 +146,19 @@ export class GeneratorComponent implements OnInit {
       }
 
       this.generatorService.compile( inputCode, parseInt( this.inputType ), parseInt( this.outputType ) )
-          .subscribe( output => { this.outputCode = output } );
+        .subscribe( output => { this.outputCode = output; } );
 
-    } else if (this.inputSourceType === this.InOutSourceEnum.Files.toString()
-              ||
-              this.inputSourceType === this.InOutSourceEnum.Directory.toString()
+    } else if ( this.inputSourceType === this.InOutSourceEnum.Files.toString()
+      ||
+      this.inputSourceType === this.InOutSourceEnum.Directory.toString()
     ) {
       this.generatorService
-          .compileFiles(
-            this.inputSourcePaths,
-            this.inputSourceType === this.InOutSourceEnum.Files.toString(),
-            parseInt( this.inputType ), parseInt( this.outputType )
-          )
-          .subscribe( output => { this.outputCode = output } );
+        .compileFiles(
+          this.inputSourcePaths,
+          this.inputSourceType === this.InOutSourceEnum.Files.toString(),
+          parseInt( this.inputType ), parseInt( this.outputType )
+        )
+        .subscribe( output => { this.outputCode = output; } );
     }
   }
 

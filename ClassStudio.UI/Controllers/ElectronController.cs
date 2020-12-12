@@ -10,14 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using ClassStudio.UI.Models.DTO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using ClassStudio.Core.Models.DTO;
 
 namespace ClassStudio.UI.Controllers
 {

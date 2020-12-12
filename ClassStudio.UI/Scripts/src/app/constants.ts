@@ -6,9 +6,9 @@
  *
  */
 
-export const Constants = Object.freeze({
-    ErrorMessages: {
-        WrongInput: '[ INVALID INPUT ]',
-        NotImplemented: '[ NOT IMPLEMENTED ]'
-    }
-});
+export const Constants = Object.freeze( {
+  ErrorMessages: {
+    WrongInput: '[ INVALID INPUT ]',
+    NotImplemented: '[ NOT IMPLEMENTED ]'
+  }
+} );
