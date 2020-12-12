@@ -2,7 +2,14 @@
 
 &nbsp;
 
-#### *v0.5.0 - 11/11/2020
+#### *v0.6.0 - 12/12/2020
+
+  - Added JSON to C# class generation.
+  - Big internal refactorings.
+
+&nbsp;
+
+#### v0.5.0 - 11/11/2020
 
   - (UI) Added the ability to remove selected files. 
   - (Backend) Multiple internal refactorings and improvements.
