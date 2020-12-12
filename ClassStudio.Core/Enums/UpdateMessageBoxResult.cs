@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
@@ -6,14 +6,11 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ClassStudio.UI.Models.DTO
+namespace ClassStudio.Core.Enums
 {
-    public class SaveFilesDTO
+    public enum UpdateMessageBoxResult
     {
+        Download = 0,
+        Skip = 1
     }
 }

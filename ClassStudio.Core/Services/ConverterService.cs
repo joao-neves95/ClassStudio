@@ -9,6 +9,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
+using ClassStudio.Core.Enums;
 using ClassStudio.Core.Interfaces;
 using ClassStudio.Core.Utils;
 

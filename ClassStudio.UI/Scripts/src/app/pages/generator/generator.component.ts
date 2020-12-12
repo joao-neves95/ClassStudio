@@ -18,11 +18,11 @@ import { LangType } from '../../enums/LangType';
 import { InOutSourceType } from '../../enums/InOutSourceType';
 import { SelectTypeConstants } from '../../enums/SelectTypeConstants';
 
-@Component({
+@Component( {
   selector: 'app-generator',
   templateUrl: './generator.component.html',
   styleUrls: ['./generator.component.scss']
-})
+} )
 export class GeneratorComponent implements OnInit {
 
   // #region PROPERTIES

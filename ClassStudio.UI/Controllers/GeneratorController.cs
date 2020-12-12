@@ -10,7 +10,9 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+using ClassStudio.Core.Enums;
 using ClassStudio.Core.Interfaces;
+using ClassStudio.Core.Models.DTO;
 using ClassStudio.Core.Utils;
 using ClassStudio.UI.Models.DTO;
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019-2020 João Pedro Martins Neves (shivayl) - All Rights Reserved.
  *
  * ClassStudio is licensed under the GPLv3.0 license (GNU General Public License v3.0),
@@ -6,16 +6,12 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ClassStudio.UI.Enums
+namespace ClassStudio.Core.Models
 {
-    public enum UpdateMessageBoxResult
+    public class ErrorViewModel
     {
-        Download = 0,
-        Skip = 1
+        public string RequestId { get; set; }
+
+        public bool ShowRequestId => !string.IsNullOrEmpty( RequestId );
     }
 }
