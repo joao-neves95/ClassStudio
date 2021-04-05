@@ -2,6 +2,18 @@
 
 &nbsp;
 
+#### v0.6.1 - //2021
+
+  - Backend:
+    - Migrate from .NET Core 3.1 to .NET 5.
+    - Updated other dependencies.
+  - UI:
+    - Migrate Electron v9.31.2 to v11.5.1
+    - Migrate Angular 8 to 11.2.
+    - Updated other dependencies.
+
+&nbsp;
+
 #### *v0.6.0 - 12/12/2020
 
   - Added JSON to C# class generation.
@@ -11,7 +23,7 @@
 
 #### v0.5.0 - 11/11/2020
 
-  - (UI) Added the ability to remove selected files. 
+  - (UI) Added the ability to remove selected files.
   - (Backend) Multiple internal refactorings and improvements.
   - (Global) Updated multiple dependencies.
 
