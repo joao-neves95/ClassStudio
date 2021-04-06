@@ -23,7 +23,7 @@ namespace ClassStudio.Core.Services.Converters
                 new Xml2CSharpConverer().Convert( input )
             );
 
-            classInfoWriter.Write( stringWriter );
+            await classInfoWriter.WriteAsync( stringWriter );
         }
     }
 }
