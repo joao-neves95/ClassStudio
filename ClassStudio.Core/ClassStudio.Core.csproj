@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lib\CSharpToTypescript\CSharpToTypescript.csproj" />
-    <ProjectReference Include="..\Lib\XmlToCSharp\Xml2CSharp\Xml2CSharp.csproj" />
+    <ProjectReference Include="..\Lib\XmlToCSharp\src\Xml2CSharp\Xml2CSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
