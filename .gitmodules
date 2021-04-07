@@ -1,3 +1,9 @@
 [submodule "Lib/CSharpToTypescript"]
 	path = Lib/CSharpToTypescript
 	url = https://github.com/joao-neves95/CSharpToTypescript.git
+[submodule "./Lib/XmlToCSharp/"]
+	path = ./Lib/XmlToCSharp/
+	url = https://github.com/joao-neves95/XmlToCSharp.git
+[submodule "Lib/XmlToCSharp"]
+	path = Lib/XmlToCSharp
+	url = https://github.com/joao-neves95/XmlToCSharp.git

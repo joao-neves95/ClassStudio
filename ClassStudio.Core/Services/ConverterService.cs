@@ -20,6 +20,11 @@ namespace ClassStudio.Core.Services
     {
         public async Task<string> ConvertAsync(ConverterType converterType, string[] input)
         {
+            if (input.Length == 0)
+            {
+                return string.Empty;
+            }
+
             using StringWriter allContent = new StringWriter();
             allContent.WriteClassStudioHeader();
 
@@ -28,6 +33,8 @@ namespace ClassStudio.Core.Services
                 await this.ConvertAsync( converterType, input[i], false, allContent );
                 await allContent.WriteLineAsync();
             }
+
+            await allContent.DisposeAsync();
 
             return allContent.ToString();
         }
