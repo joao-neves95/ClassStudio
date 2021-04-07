@@ -2,19 +2,25 @@
 
 &nbsp;
 
-#### v0.6.1 - //2021
+#### *v0.6.1 - 07/04/2021
 
   - Backend:
+    - Fixed an issue with the dispose of a stream by Xml2CSharp, which made XML/JSON to CSharp not work.
+    - Solved a memory leak on the ConverterService.
+    - Other small fixes, improvements and optimizations.
+    - Update to Xml2CSharp as a sub-module and use new async method.
+    - Update LibCSharpToTypescript from v1.0.3 to v1.0.4.
     - Migrate from .NET Core 3.1 to .NET 5.
     - Updated other dependencies.
   - UI:
+    - Fixed a typo on the Generator's "Compile" button.
     - Migrate Electron v9.31.2 to v11.5.1
     - Migrate Angular 8 to 11.2.
     - Updated other dependencies.
 
 &nbsp;
 
-#### *v0.6.0 - 12/12/2020
+#### v0.6.0 - 12/12/2020
 
   - Added JSON to C# class generation.
   - Big internal refactorings.
