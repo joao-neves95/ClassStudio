@@ -2,7 +2,14 @@
 
 &nbsp;
 
-#### *v0.6.1 - 07/04/2021
+#### *v0.6.2 - 25/06/2021
+
+  - Improved the input/output code language selection (drop downs) with a conversion mapping
+    adjacency list, with dynamic update.
+
+&nbsp;
+
+#### v0.6.1 - 07/04/2021
 
   - Backend:
     - Fixed an issue with the dispose of a stream by Xml2CSharp, which made XML/JSON to CSharp not work.
