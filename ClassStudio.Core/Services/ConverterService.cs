@@ -54,7 +54,7 @@ namespace ClassStudio.Core.Services
                 stringWriter.WriteClassStudioHeader();
             }
 
-            await ConverterFactory.Get( converterType ).ConvertAsync( input, stringWriter );
+            await ConverterFactory.Get( converterType ).ConvertAsync( input, stringWriter ).ConfigureAwait( false );
 
             string result = stringWriter.ToString();
 

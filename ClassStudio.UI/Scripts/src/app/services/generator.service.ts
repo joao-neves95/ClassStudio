@@ -39,6 +39,20 @@ export class GeneratorService {
   // #region PUBLIC METHODS
 
   /**
+   * Return E.g.:
+   * {
+   *   XML: [2],
+   *   CSharp: [1, 2],
+   * }
+   *
+   * Same id as in LangType.
+   */
+  public async getConverterMappings(): Promise<any> {
+    const res = await fetch( this.baseGeneratorUrl + 'ConverterMappings' );
+    return await res.json();
+  }
+
+  /**
    * POST request to compile code in the GeneratorController.
    */
   compile( inputCode: string | null | undefined, inputType: number | null | undefined, outputType: number | null | undefined ): Observable<string> {

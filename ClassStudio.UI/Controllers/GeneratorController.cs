@@ -7,6 +7,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ using ClassStudio.Core.Enums;
 using ClassStudio.Core.Interfaces;
 using ClassStudio.Core.Models.DTO;
 using ClassStudio.Core.Utils;
+using ClassStudio.Core.Services.Converters;
 
 namespace ClassStudio.UI.Controllers
 {
@@ -27,6 +29,16 @@ namespace ClassStudio.UI.Controllers
         {
             this._ConverterService = converterService;
         }
+
+        [HttpGet]
+        [Route( "ConverterMappings" )]
+        public IDictionary<LangEnum, LangEnum[]> GetConverterMappings()
+        {
+            return ConverterFactory.ConverterMappings;
+        }
+
+        // TODO: Remove this duplication.
+        #region TO REFACTOR
 
         [HttpPost]
         [Route( "XMLStringToCSharp" )]
@@ -90,6 +102,8 @@ namespace ClassStudio.UI.Controllers
                 return $"{e.Message} \n{e.StackTrace}";
             }
         }
+
+        #endregion TO REFACTOR
 
         private async Task<string[]> GetInputFromFilesAsync(GeneratorDTO generatorDTO)
         {

@@ -17,7 +17,6 @@ using Newtonsoft.Json;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
-using ClassStudio.UI.Enums;
 using ClassStudio.Core.Models;
 using ClassStudio.Core.Enums;
 

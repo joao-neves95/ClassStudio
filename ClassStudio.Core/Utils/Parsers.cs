@@ -6,15 +6,11 @@
  *
  */
 
-using ClassStudio.UI.Enums;
-
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ClassStudio.Core.Enums;
 
 namespace ClassStudio.Core.Utils
 {
-    public class Parsers
+    public static class Parsers
     {
         /// <summary>
         /// 

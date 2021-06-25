@@ -6,6 +6,7 @@
  *
  */
 
+using System;
 using System.Collections.Generic;
 
 using ClassStudio.Core.Enums;
@@ -15,6 +16,15 @@ namespace ClassStudio.Core.Services.Converters
 {
     public static class ConverterFactory
     {
+        public static readonly IDictionary<LangEnum, LangEnum[]> ConverterMappings = new Dictionary<LangEnum, LangEnum[]>()
+        {
+            { LangEnum.CSharp, new LangEnum[] { LangEnum.TypeScript } },
+            { LangEnum.XML, new LangEnum[] { LangEnum.CSharp } },
+            { LangEnum.JSON, new LangEnum[] { LangEnum.CSharp } },
+            { LangEnum.TypeScript, Array.Empty<LangEnum>() },
+            { LangEnum.JavaScript, Array.Empty<LangEnum>() }
+        };
+
         private static readonly IDictionary<ConverterType, IConverter> TypeMapping = new Dictionary<ConverterType, IConverter>()
         {
             { ConverterType.CSharpToTypescript, new CSharpToTypescript() },
