@@ -2,10 +2,11 @@
 
 &nbsp;
 
-#### *v0.6.2 - 25/06/2021
+#### *v0.6.2 - 29/06/2021
 
   - Improved the input/output code language selection (drop downs) with a conversion mapping
     adjacency list, with dynamic update.
+  - Fixed dependency vulnerabilities.
 
 &nbsp;
 
