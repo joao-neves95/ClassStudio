@@ -91,7 +91,6 @@ export class GeneratorComponent implements OnInit {
         this.inputType = this.__inputSelectViewModel.options[0].value;
 
         this.onSelect( SelectTypeConstants.InputCode, this.inputType );
-        this.outputType = this.__outputSelectViewModel.options[0]?.value;
     }
 
     /**
@@ -106,6 +105,7 @@ export class GeneratorComponent implements OnInit {
             this.inputType = value;
             this.__outputSelectViewModel.options.splice(0);
             this.__outputSelectViewModel.options = this.mapInputLangToOutputViewModels(this.inputType);
+            this.outputType = this.__outputSelectViewModel.options[0]?.value;
 
         } else if (selectType === SelectTypeConstants.OutputCode) {
             this.outputType = value;

@@ -98,6 +98,7 @@ export class GeneratorService {
 
   private parseEndpoint( inputType: number, outputType: number ): string {
 
+    // TODO: Remove this logic. Send the LangIDs to the backend.
     if ( inputType === LangType.XML && outputType === LangType.CSharp ) {
       return 'XMLStringToCSharp';
 
