@@ -19,7 +19,7 @@ electronize start /PublishReadyToRun false /watch
 ```
 electronize build /target win /PublishReadyToRun false
 
-electronize build /target osx
+electronize build /target osx /PublishReadyToRun false
 
-electronize build /target linux
+electronize build /target linux /PublishReadyToRun false
 ```
