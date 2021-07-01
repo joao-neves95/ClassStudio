@@ -1,8 +1,8 @@
-version: 0.6.1
+version: 0.6.2
 files:
-  - url: ClassStudio-Setup-0.6.1.exe
-    sha512: tvYBM31E+G37L/4ZKGM5SIJG+c/eUHneZAH+ivUuSYKhZzwTm/vW8CXIc4jpeqYzEidM8A6P4t8Vx1idYSaA8w==
-    size: 93934283
-path: ClassStudio-Setup-0.6.1.exe
-sha512: tvYBM31E+G37L/4ZKGM5SIJG+c/eUHneZAH+ivUuSYKhZzwTm/vW8CXIc4jpeqYzEidM8A6P4t8Vx1idYSaA8w==
-releaseDate: '2021-04-07T10:31:52.773Z'
+  - url: ClassStudio-Setup-0.6.2.exe
+    sha512: a6LLbbaJoMKeWlMFJ+9ft/rXs+80Sci6Drg1SHsbxxVG7NSk3HU6d7yXoUqWh99IZrNVDh9Y5+dh9qMq0UQ/Rw==
+    size: 93888878
+path: ClassStudio-Setup-0.6.2.exe
+sha512: a6LLbbaJoMKeWlMFJ+9ft/rXs+80Sci6Drg1SHsbxxVG7NSk3HU6d7yXoUqWh99IZrNVDh9Y5+dh9qMq0UQ/Rw==
+releaseDate: '2021-07-01T17:24:54.219Z'
