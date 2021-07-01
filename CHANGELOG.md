@@ -4,9 +4,13 @@
 
 #### *v0.6.2 - 29/06/2021
 
-  - Improved the input/output code language selection (drop downs) with a conversion mapping
-    adjacency list, with dynamic update.
-  - Fixed dependency vulnerabilities.
+  - Backend:
+    - Updated LibCSharpToTypescript, which fixed C# to TypeScript compilation on this .NET 5 environment.
+    - Updated dependencies.
+  - UI:
+    - Improved the input/output code language selection (drop downs) using a conversion mapping
+      adjacency list, with dynamic update.
+    - Fixed dependency vulnerabilities.
 
 &nbsp;
 
