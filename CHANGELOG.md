@@ -2,7 +2,19 @@
 
 &nbsp;
 
-#### *v0.6.1 - 07/04/2021
+#### *v0.6.2 - 29/06/2021
+
+  - Backend:
+    - Updated LibCSharpToTypescript, which fixed C# to TypeScript compilation on this .NET 5 environment.
+    - Updated dependencies.
+  - UI:
+    - Improved the input/output code language selection (drop downs) using a conversion mapping
+      adjacency list, with dynamic update.
+    - Fixed dependency vulnerabilities.
+
+&nbsp;
+
+#### v0.6.1 - 07/04/2021
 
   - Backend:
     - Fixed an issue with the dispose of a stream by Xml2CSharp, which made XML/JSON to CSharp not work.

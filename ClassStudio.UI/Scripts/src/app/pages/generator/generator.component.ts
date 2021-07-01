@@ -14,152 +14,164 @@ import { ElectronService } from '../../services/electron.service';
 import { Utils } from 'src/app/shared/utils';
 import { SelectViewModel, OptionViewModel } from '../../models/select.viewModel';
 import { ButtonViewModel } from '../../models/button.viewModel';
-import { LangType } from '../../enums/LangType';
+import { LangType, langTypeLabelToLangId, numberToLangTypeLabel } from '../../enums/LangType';
 import { InOutSourceType } from '../../enums/InOutSourceType';
 import { SelectTypeConstants } from '../../enums/SelectTypeConstants';
 
-@Component( {
-  selector: 'app-generator',
-  templateUrl: './generator.component.html',
-  styleUrls: ['./generator.component.scss']
-} )
+@Component({
+    selector: 'app-generator',
+    templateUrl: './generator.component.html',
+    styleUrls: ['./generator.component.scss']
+})
 export class GeneratorComponent implements OnInit {
 
-  // #region PROPERTIES
+    // #region PROPERTIES
 
-  __inputSelectViewModel: SelectViewModel;
-  __inputSourceSelectViewModel: SelectViewModel;
-  __inputSourceButtonViewModel: ButtonViewModel;
-  __outputSelectViewModel: SelectViewModel;
-  __outputSourceSelectViewModel: SelectViewModel;
+    private converterMappings: any = {};
 
-  inputType: string;
-  inputSourceType: string;
-  inputSourcePaths: string[] = [];
-  outputType: string;
-  outputSourceType: string;
-  outputSource: string[] = [];
-  outputCode: string = '';
+    __inputSelectViewModel: SelectViewModel = new SelectViewModel([]);
+    __inputSourceSelectViewModel: SelectViewModel;
+    __outputSelectViewModel: SelectViewModel = new SelectViewModel([]);
+    __outputSourceSelectViewModel: SelectViewModel;
+    __inputSourceButtonViewModel: ButtonViewModel;
 
-  get InOutSourceEnum() { return InOutSourceType; }
+    inputType: string = '';
+    inputSourceType: string = '';
+    inputSourcePaths: string[] = [];
+    outputType: string = '';
+    outputSourceType: string = '';
+    outputSource: string[] = [];
+    outputCode: string = '';
 
-  // #endregion PROPERTIES
+    get InOutSourceEnum() { return InOutSourceType; }
 
-  // #region CONSTRUCTOR
+    // #endregion PROPERTIES
 
-  constructor( private generatorService: GeneratorService, private electronService: ElectronService ) {
+    // #region CONSTRUCTOR
 
-    this.__inputSelectViewModel = new SelectViewModel(
-      [
-        new OptionViewModel( 'XML', LangType.XML.toString() ),
-        new OptionViewModel( 'JSON', LangType.JSON.toString() ),
-        new OptionViewModel( 'C#', LangType.CSharp.toString() ),
-      ]
-    );
-    this.inputType = this.__inputSelectViewModel.options[0].value;
+    constructor(private generatorService: GeneratorService, private electronService: ElectronService) {
+        this.__inputSourceSelectViewModel = new SelectViewModel(
+            [
+                new OptionViewModel('Text', InOutSourceType.Text.toString()),
+                new OptionViewModel('File', InOutSourceType.Files.toString()),
+                new OptionViewModel('Directory', InOutSourceType.Directory.toString())
+            ]
+        );
+        this.inputSourceType = this.__inputSourceSelectViewModel.options[0].value;
 
-    this.__inputSourceSelectViewModel = new SelectViewModel(
-      [
-        new OptionViewModel( 'Text', InOutSourceType.Text.toString() ),
-        new OptionViewModel( 'File', InOutSourceType.Files.toString() ),
-        new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
-      ]
-    );
-    this.inputSourceType = this.__inputSourceSelectViewModel.options[0].value;
+        this.__outputSourceSelectViewModel = new SelectViewModel(
+            [
+                new OptionViewModel('Text', InOutSourceType.Text.toString()),
+                new OptionViewModel('Directory', InOutSourceType.Directory.toString())
+            ]
+        );
+        this.outputSourceType = this.__inputSourceSelectViewModel.options[0].value;
 
-    this.__inputSourceButtonViewModel = new ButtonViewModel( 'Select', ( e: Event ) => {
-      e.preventDefault();
-      return this.selectFiles();
-    } );
-
-    this.__outputSelectViewModel = new SelectViewModel(
-      [
-        new OptionViewModel( 'C#', LangType.CSharp.toString() ),
-        new OptionViewModel( 'TypeScript', LangType.TypeScript.toString() ),
-      ]
-    );
-    this.outputType = this.__outputSelectViewModel.options[0].value;
-
-    this.__outputSourceSelectViewModel = new SelectViewModel(
-      [
-        new OptionViewModel( 'Text', InOutSourceType.Text.toString() ),
-        new OptionViewModel( 'Directory', InOutSourceType.Directory.toString() )
-      ]
-    );
-    this.outputSourceType = this.__inputSourceSelectViewModel.options[0].value;
-
-  }
-
-  // #endregion CONSTRUCTOR
-
-  ngOnInit() {
-  }
-
-  /**
-   *
-   * @param selectType ( "input" | "output" )
-   * @param value
-   */
-  onSelect( selectType: string, value: string ) {
-    selectType = selectType.toUpperCase();
-
-    if ( selectType === SelectTypeConstants.InputCode ) {
-      this.inputType = value;
-
-    } else if ( selectType === SelectTypeConstants.OutputCode ) {
-      this.outputType = value;
-
-    } else if ( selectType === SelectTypeConstants.InputSource ) {
-      this.inputSourceType = value;
-
-    } else if ( selectType === SelectTypeConstants.OutputSource ) {
-      this.outputSourceType = value;
-
-    } else {
-      const exceptionMessage: string = 'Unknown generator select type.';
-      this.outputCode = exceptionMessage;
-      throw new Error( exceptionMessage );
+        this.__inputSourceButtonViewModel = new ButtonViewModel('Select', (e: Event) => {
+            e.preventDefault();
+            return this.selectFiles();
+        });
     }
 
-  }
+    // #endregion CONSTRUCTOR
 
-  removeFile( index: number ) {
-    this.inputSourcePaths.splice( index, 1 );
-  }
+    async ngOnInit(): Promise<void> {
+        this.converterMappings = await this.generatorService.getConverterMappings();
 
-  selectFiles() {
-    if ( this.inputSourceType === this.InOutSourceEnum.Files.toString() ) {
-      this.electronService.selectFiles().subscribe( files => { this.inputSourcePaths = files; } );
+        for (const lang in this.converterMappings) {
+            if ((this.converterMappings[lang] as number[]).length === 0) {
+                continue;
+            }
 
-    } else if ( this.inputSourceType === this.InOutSourceEnum.Directory.toString() ) {
-      this.electronService.selectDirectory().subscribe( files => { this.inputSourcePaths = files; } );
+            this.__inputSelectViewModel.options.push(
+                new OptionViewModel(lang, langTypeLabelToLangId(lang).toString() )
+            );
+        }
+
+        this.inputType = this.__inputSelectViewModel.options[0].value;
+
+        this.onSelect( SelectTypeConstants.InputCode, this.inputType );
     }
 
-  }
+    /**
+     *
+     * @param selectType ( "input" | "output" )
+     * @param value
+     */
+    onSelect(selectType: string, value: string) {
+        selectType = selectType.toUpperCase();
 
-  compile() {
-    if ( this.inputSourceType === this.InOutSourceEnum.Text.toString() ) {
-      const inputCode: string = ( document.getElementById( 'input-code' ) as HTMLInputElement ).value;
+        if (selectType === SelectTypeConstants.InputCode) {
+            this.inputType = value;
+            this.__outputSelectViewModel.options.splice(0);
+            this.__outputSelectViewModel.options = this.mapInputLangToOutputViewModels(this.inputType);
+            this.outputType = this.__outputSelectViewModel.options[0]?.value;
 
-      if ( Utils.isNullOrEmpty( inputCode ) ) {
-        this.outputCode = '[ ERROR: NO INPUT GIVEN ]';
-      }
+        } else if (selectType === SelectTypeConstants.OutputCode) {
+            this.outputType = value;
 
-      this.generatorService.compile( inputCode, parseInt( this.inputType ), parseInt( this.outputType ) )
-        .subscribe( output => { this.outputCode = output; } );
+        } else if (selectType === SelectTypeConstants.InputSource) {
+            this.inputSourceType = value;
 
-    } else if ( this.inputSourceType === this.InOutSourceEnum.Files.toString()
-      ||
-      this.inputSourceType === this.InOutSourceEnum.Directory.toString()
-    ) {
-      this.generatorService
-        .compileFiles(
-          this.inputSourcePaths,
-          this.inputSourceType === this.InOutSourceEnum.Files.toString(),
-          parseInt( this.inputType ), parseInt( this.outputType )
-        )
-        .subscribe( output => { this.outputCode = output; } );
+        } else if (selectType === SelectTypeConstants.OutputSource) {
+            this.outputSourceType = value;
+
+        } else {
+            const exceptionMessage = 'Unknown generator select type.';
+            this.outputCode = exceptionMessage;
+            throw new Error(exceptionMessage);
+        }
+
     }
-  }
+
+    private mapInputLangToOutputViewModels(inputLangId: string): OptionViewModel[] {
+        const viewModels = [];
+        const outputLangsIds = this.converterMappings[ numberToLangTypeLabel(parseInt(inputLangId)) ] as number[] ?? [];
+
+        for (const langOutputId of outputLangsIds) {
+            viewModels.push( new OptionViewModel( numberToLangTypeLabel( langOutputId ), langOutputId.toString() ) );
+        }
+
+        return viewModels;
+    }
+
+    removeFile(index: number) {
+        this.inputSourcePaths.splice(index, 1);
+    }
+
+    selectFiles() {
+        if (this.inputSourceType === this.InOutSourceEnum.Files.toString()) {
+            this.electronService.selectFiles().subscribe(files => { this.inputSourcePaths = files; });
+
+        } else if (this.inputSourceType === this.InOutSourceEnum.Directory.toString()) {
+            this.electronService.selectDirectory().subscribe(files => { this.inputSourcePaths = files; });
+        }
+
+    }
+
+    compile() {
+        if (this.inputSourceType === this.InOutSourceEnum.Text.toString()) {
+            const inputCode: string = (document.getElementById('input-code') as HTMLInputElement).value;
+
+            if (Utils.isNullOrEmpty(inputCode)) {
+                this.outputCode = '[ ERROR: NO INPUT GIVEN ]';
+            }
+
+            this.generatorService.compile(inputCode, parseInt(this.inputType), parseInt(this.outputType))
+                .subscribe(output => { this.outputCode = output; });
+
+        } else if (this.inputSourceType === this.InOutSourceEnum.Files.toString()
+            ||
+            this.inputSourceType === this.InOutSourceEnum.Directory.toString()
+        ) {
+            this.generatorService
+                .compileFiles(
+                    this.inputSourcePaths,
+                    this.inputSourceType === this.InOutSourceEnum.Files.toString(),
+                    parseInt(this.inputType), parseInt(this.outputType)
+                )
+                .subscribe(output => { this.outputCode = output; });
+        }
+    }
 
 }

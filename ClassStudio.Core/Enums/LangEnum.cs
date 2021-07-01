@@ -6,7 +6,7 @@
  *
  */
 
-namespace ClassStudio.UI.Enums
+namespace ClassStudio.Core.Enums
 {
     public enum LangEnum
     {

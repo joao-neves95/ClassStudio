@@ -35,7 +35,7 @@
 
     <textarea id="input-code" class="uk-textarea" required
               *ngIf=" inputSourceType === InOutSourceEnum.Text.toString() ">
-   </textarea>
+    </textarea>
     <app-button class="file-selector"
                 [buttonViewModel]="__inputSourceButtonViewModel"
                 *ngIf=" inputSourceType === InOutSourceEnum.Files.toString() || inputSourceType === InOutSourceEnum.Directory.toString() ">

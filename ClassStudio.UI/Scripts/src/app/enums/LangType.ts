@@ -15,13 +15,57 @@
  */
 
 export enum LangType {
-  XML = 1,
+    XML = 1,
 
-  CSharp = 2,
+    CSharp = 2,
 
-  TypeScript = 3,
+    TypeScript = 3,
 
-  JavaScript = 4,
+    JavaScript = 4,
 
-  JSON = 5
+    JSON = 5
+}
+
+export function numberToLangTypeLabel(langTypeId: number) {
+    switch (langTypeId) {
+        case 1:
+            return 'XML';
+
+        case 2:
+            return 'CSharp';
+
+        case 3:
+            return 'TypeScript';
+
+        case 4:
+            return 'JavaScript';
+
+        case 5:
+            return 'JSON';
+
+        default:
+            return '';
+    }
+}
+
+export function langTypeLabelToLangId(langTypeLabel: string): number {
+    switch (langTypeLabel) {
+        case 'XML':
+            return 1;
+
+        case 'CSharp':
+            return 2;
+
+        case 'TypeScript':
+            return 3;
+
+        case 'JavaScript':
+            return 4;
+
+        case 'JSON':
+            return 5;
+
+        default:
+            return -1;
+    }
 }

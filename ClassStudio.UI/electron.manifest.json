@@ -8,7 +8,7 @@
     "appId": "com.ClassStudio.app",
     "productName": "ClassStudio",
     "copyright": "Copyright © 2019 - 2021, João Neves (_SHIVAYL_)",
-    "buildVersion": "0.6.1",
+    "buildVersion": "0.6.2",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
